@@ -1,8 +1,9 @@
 <div class="messages">
 
   <div *ngFor="let entry of entries">
-    <p>{{entry.title}}</p>
-    <p>{{entry.content}}</p>
-    <p>{{entry.dateCreated}}</p>
+    <div class="messages2">
+      <div class ="message-head"> <p>{{entry.title}} | {{entry.dateCreated}}</p></div>
+    <p style="float: none">{{entry.content}}</p>
+    </div>
   </div>
 </div>

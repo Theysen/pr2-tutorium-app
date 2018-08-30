@@ -1,1 +1,10 @@
-
+.head{
+  background-color: #eeeeee;
+  height: 50px;
+}
+.title{
+  margin-left: 2rem;
+}
+.login{
+  margin-right: 2rem;
+}

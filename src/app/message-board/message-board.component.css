@@ -1,4 +1,17 @@
-
+.messages {
+  magin: 0.5rem;
+  padding: 1.5rem;
+  border: antiquewhite;
+  border-left-style: groove;
+  border-top-style: groove;
+  border-right-style: groove;
+  border-bottom-style: groove;
+}
+.messages2{
+  border-style: dot-dash;
+  border: antiquewhite;
+  border-bottom-style: groove;
+}
 
 
 
