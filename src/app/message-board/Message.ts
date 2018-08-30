@@ -8,6 +8,6 @@ export class Message {
     this.title = title;
     this.content = content;
     this.dateCreated = dateCreated;
-    console.log(1+1);
+    console.log(1+1)
   }
 }
