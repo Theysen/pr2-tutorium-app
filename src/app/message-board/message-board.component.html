@@ -1,6 +1,8 @@
 <div class="messages">
 
   <div *ngFor="let entry of entries">
-    <p>{{entry}}</p>
+    <p>{{entry.title}}</p>
+    <p>{{entry.content}}</p>
+    <p>{{entry.dateCreated}}</p>
   </div>
 </div>

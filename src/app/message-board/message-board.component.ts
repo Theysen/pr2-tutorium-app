@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Message} from "./Message";
 
 @Component({
   selector: 'app-message-board',
@@ -7,12 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageBoardComponent implements OnInit {
 
-  entries: string[] = Array();
+  entries: Message[] = Array();
 
   constructor() {
-    const message = "Hello World";
-    this.entries.push(message);
-    this.entries.push(message);
+    const title = "Hello World!";
+    const message = "Lorem Ipsum";
+    const dateCreated = new Date().toDateString();
+
+    this.entries.push(new Message(title, message, dateCreated));
+    this.entries.push(new Message(title, message, dateCreated));
+
   }
 
   ngOnInit() {

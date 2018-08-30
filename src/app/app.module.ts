@@ -23,7 +23,7 @@ import {MainBodyComponent} from './main-body/main-body.component';
     AdminComponent,
     FooterComponent,
     HeaderComponent,
-    MainBodyComponent,
+    MainBodyComponent
   ],
   imports: [
     BrowserModule,
