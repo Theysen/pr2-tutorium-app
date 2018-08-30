@@ -1,3 +1,6 @@
-<p>
-  message-board works!
-</p>
+<div class="messages">
+
+  <div *ngFor="let entry of entries">
+    <p>{{entry}}</p>
+  </div>
+</div>

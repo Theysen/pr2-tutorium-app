@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageBoardComponent implements OnInit {
 
-  constructor() { }
+  entries: string[] = Array();
+
+  constructor() {
+    const message = "Hello World";
+    this.entries.push(message);
+    this.entries.push(message);
+  }
 
   ngOnInit() {
   }
