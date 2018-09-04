@@ -1,12 +1,22 @@
-<div class="head">
-  <div class="title" style="float: left">
-    <h3>PR2 - Tutorium - WS18/19</h3>
-  </div>
-  <div class="login" style="float: right">
-    <app-login></app-login>
-  </div>
-</div>
+<mat-toolbar class="mat-elevation-z12" color="primary">
+  <span><h1>PR2</h1></span>
 
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <span>
+      <form class="Login">
+  <mat-form-field >
+    <input type="text" matInput placeholder="Username">
+  </mat-form-field>
+  <mat-form-field >
+    <input type="password" matInput placeholder="Password">
+  </mat-form-field>
+        <button mat-stroked-button>Login</button>
+
+</form>
+</span>
+</mat-toolbar>
 
 
 

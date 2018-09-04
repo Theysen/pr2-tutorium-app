@@ -1,4 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
+
 import {NgModule} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 
@@ -11,6 +12,12 @@ import {AdminComponent} from './admin/admin.component';
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {MainBodyComponent} from './main-body/main-body.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatButtonModule, MatCheckboxModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule} from '@angular/material';
+import { NaviComponent } from './navi/navi.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { DashComponent } from './dash/dash.component';
+import { TableComponent } from './table/table.component';
 
 
 @NgModule({
@@ -23,11 +30,29 @@ import {MainBodyComponent} from './main-body/main-body.component';
     AdminComponent,
     FooterComponent,
     HeaderComponent,
-    MainBodyComponent
+    MainBodyComponent,
+    NaviComponent,
+    DashComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
