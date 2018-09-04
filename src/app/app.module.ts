@@ -14,10 +14,7 @@ import {HeaderComponent} from './header/header.component';
 import {MainBodyComponent} from './main-body/main-body.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule, MatCheckboxModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule} from '@angular/material';
-import { NaviComponent } from './navi/navi.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { DashComponent } from './dash/dash.component';
-import { TableComponent } from './table/table.component';
 
 
 @NgModule({
@@ -31,9 +28,6 @@ import { TableComponent } from './table/table.component';
     FooterComponent,
     HeaderComponent,
     MainBodyComponent,
-    NaviComponent,
-    DashComponent,
-    TableComponent
   ],
   imports: [
     BrowserModule,
