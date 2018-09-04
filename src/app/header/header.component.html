@@ -1,15 +1,19 @@
 <mat-toolbar class="mat-elevation-z12" color="primary">
   <span><h1>PR2</h1></span>
+  <nav>
+    <a class="dashboard" routerLink="/dashboard">Dashboard</a>
+    <a class = "calendar" routerLink="/calendar">Termine</a>
+  </nav>
 
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
 
   <span>
       <form class="Login">
-  <mat-form-field >
+  <mat-form-field>
     <input type="text" matInput placeholder="Username">
   </mat-form-field>
-  <mat-form-field >
+  <mat-form-field>
     <input type="password" matInput placeholder="Password">
   </mat-form-field>
         <button mat-stroked-button>Login</button>
