@@ -13,9 +13,10 @@ import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {MainBodyComponent} from './main-body/main-body.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatButtonModule, MatCheckboxModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatBadgeModule, MatSliderModule} from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AppRoutingModule } from './app-routing.module';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AppRoutingModule } from './app-routing.module';
     FooterComponent,
     HeaderComponent,
     MainBodyComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatSortModule,
     MatInputModule,
     AppRoutingModule,
+    MatBadgeModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

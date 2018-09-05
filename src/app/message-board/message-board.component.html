@@ -1,10 +1,8 @@
 <div class="messages">
-
-  <div *ngFor="let entry of entries">
-    <div class="messages2">
-      <div class ="message-head"> <p>{{entry.title}} | {{entry.dateCreated}}</p></div>
-    <p style="float: none">{{entry.content}}</p>
-    </div>
-  </div>
+  <mat-card class="mat-elevation-z6" *ngFor="let entry of entries">
+    <mat-card-title>{{entry.title}}
+    </mat-card-title>
+    <mat-card-subtitle>{{entry.dateCreated}}</mat-card-subtitle>
+    <mat-card-content>{{entry.content}}</mat-card-content>
+  </mat-card>
 </div>
-<mat-checkbox>hurra</mat-checkbox>

@@ -1,6 +1,11 @@
 .mat-elevation-z12{
   height: 70px;
   position: fixed;
+  z-index: 100;
+}
+.buttons{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 .title{
   margin-left: 2rem;
@@ -16,5 +21,8 @@
   /* This fills the remaining space, by using flexbox.
      Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
+}
+.placeholder{
+  padding-right: 2rem;
 }
 

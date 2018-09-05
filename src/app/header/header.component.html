@@ -1,22 +1,42 @@
 <mat-toolbar class="mat-elevation-z12" color="primary">
-  <span><h1>PR2</h1></span>
-  <a class="dashboard" routerLink="/dashboard">Dashboard</a>
-  <a class="calendar" routerLink="/calendar">Termine</a>
+  <span><button mat-flat-button color="primary" class="buttons" onclick="location.href='dashboard';"> <mat-icon>settings_input_svideo</mat-icon>
+ PR2 Tutorial</button>
+    <!-- evtl redundante buttons
+    <button mat-flat-button color="primary" class="buttons" onclick="location.href='dashboard';"> Dashboard</button>
+    <button mat-flat-button color="primary" class="buttons" onclick="location.href='calendar';"> <mat-icon>event</mat-icon> Termine</button>
+//-->
 
-  <!-- This fills the remaining space of the current row -->
+
+  </span>
+
+
   <span class="example-fill-remaining-space"></span>
 
   <span>
-      <form class="Login">
+
+<!-- login and register bar
+     <form class="Login">
   <mat-form-field>
-    <input type="text" matInput placeholder="Username">
+    <input type="text" matInput placeholder="Username" class="buttons">
   </mat-form-field>
+        <span class="placeholder"> </span>
   <mat-form-field>
-    <input type="password" matInput placeholder="Password">
+    <input type="password" matInput placeholder="Password" class="buttons">
   </mat-form-field>
-        <button mat-stroked-button>Login</button>
+        <button mat-flat-button color="primary" class="buttons" onclick="location.href='profile';">Login</button>
+        <button mat-flat-button color="primary" class="buttons" onclick="location.href='register';">Register</button>
 
 </form>
+//-->
+
+    <button mat-flat-button color="primary" class="buttons" onclick="location.href='dashboard';"> <mat-icon>face</mat-icon> Profile</button>
+    <button mat-flat-button color="primary" class="buttons" onclick="location.href='calendar';"> <mat-icon matBadge="2"
+                                                                                                           matBadgePosition="before below"
+                                                                                                           matBadgeColor="accent">event</mat-icon> Termine</button>
+    <button mat-flat-button color="primary" class="buttons" onclick="location.href='dashboard';"> <mat-icon
+      matBadge="15" matBadgePosition="before below" matBadgeColor="accent">email</mat-icon> Messages</button>
+   <button mat-flat-button color="primary" class="buttons" onclick="location.href='dashboard';"> <mat-icon>power_settings_new</mat-icon> Log out</button>
+
 </span>
 </mat-toolbar>
 

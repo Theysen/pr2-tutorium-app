@@ -1,17 +1,20 @@
 .messages {
-  magin: 0.5rem;
-  padding: 1.5rem;
-  border: antiquewhite;
-  border-left-style: groove;
-  border-top-style: groove;
-  border-right-style: groove;
-  border-bottom-style: groove;
+  magin: 1rem;
+  padding: 1rem;
+  z-index: -1;
 }
 .messages2{
   border-style: dot-dash;
   border: antiquewhite;
   border-bottom-style: groove;
 }
-
+.mat-elevation-z6{
+  margin: 2rem;
+}
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
 
 
