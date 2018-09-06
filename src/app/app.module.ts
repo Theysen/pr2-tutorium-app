@@ -34,7 +34,7 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {AppRoutingModule} from './app-routing.module';
 import {RegisterComponent} from './register/register.component';
 import {MessageService} from "./message.service";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {ListComponent} from './list/list.component';
 
 @NgModule({

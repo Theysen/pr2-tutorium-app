@@ -1,6 +1,8 @@
 <div *ngFor="let message of messagesFromDatabase">
 
-  <h3 style="border:dashed cyan">{{message.author}}</h3>
-  <p style="border: double black">{{message.content}}</p>
+  <h3 style="border:dashed cyan">{{message.title}}</h3>
+  <p style="border: double black">{{message.author}}</p>
+  <p style="border: double black">{{message.body}}</p>
+  <p style="border: double black">{{message.date}}</p>
 
 </div>

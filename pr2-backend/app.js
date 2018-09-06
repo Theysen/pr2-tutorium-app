@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 const messageRoutes = require('./api/routes/messages');
 
 
-mongoose.connect('mongodb+srv://admin_theysen:root@pr2-messages-53qtq.mongodb.net/test?retryWrites=true'
+mongoose.connect('mongodb+srv://admin_theysen:root@pr2-messages-53qtq.mongodb.net/test?retryWrites=true',
+  {useNewUrlParser: true}
 );
 
 app.use(bodyParser.urlencoded({ extended: false }));
