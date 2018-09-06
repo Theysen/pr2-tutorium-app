@@ -8,17 +8,22 @@ import {MessageService} from "../message.service";
 })
 export class ListComponent implements OnInit {
 
+  messagesFromDatabase: any;
+
   constructor(private messageService: MessageService) {
   }
 
   ngOnInit() {
-    this.messageService.getMessagesById("5b9103c1ab174729f861b9ac").subscribe((message) => {
-      console.log(message);
-    });
+
+    // this.messageService.addMessage("Lukas Theisen", "Hello World").subscribe((message) => {
+    //   console.log(message);
+    // })
+
 
     this.messageService.getMessages().subscribe((messages) => {
-      console.log(messages);
+      this.messagesFromDatabase = messages;
     });
+
 
   }
 

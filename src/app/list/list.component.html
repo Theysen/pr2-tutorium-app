@@ -1,3 +1,6 @@
-<p>
-  list works!
-</p>
+<div *ngFor="let message of messagesFromDatabase">
+
+  <h3 style="border:dashed cyan">{{message.author}}</h3>
+  <p style="border: double black">{{message.content}}</p>
+
+</div>
