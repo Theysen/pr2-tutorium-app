@@ -13,11 +13,28 @@ import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {MainBodyComponent} from './main-body/main-body.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatButtonModule, MatCheckboxModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatBadgeModule, MatSliderModule} from '@angular/material';
-import { LayoutModule } from '@angular/cdk/layout';
-import { AppRoutingModule } from './app-routing.module';
-import { RegisterComponent } from './register/register.component';
-
+import {
+  MatBadgeModule,
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatPaginatorModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSortModule,
+  MatTableModule,
+  MatToolbarModule
+} from '@angular/material';
+import {LayoutModule} from '@angular/cdk/layout';
+import {AppRoutingModule} from './app-routing.module';
+import {RegisterComponent} from './register/register.component';
+import {MessageService} from "./message.service";
+import {HttpClient} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -30,7 +47,7 @@ import { RegisterComponent } from './register/register.component';
     FooterComponent,
     HeaderComponent,
     MainBodyComponent,
-    RegisterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +69,10 @@ import { RegisterComponent } from './register/register.component';
     MatInputModule,
     AppRoutingModule,
     MatBadgeModule,
-    MatSliderModule
+    MatSliderModule,
+    HttpClient
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
