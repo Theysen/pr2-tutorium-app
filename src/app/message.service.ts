@@ -7,7 +7,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class MessageService {
 
-  uri: String = 'http://localhost:3000/api/messages';
+  uri: String = 'http://localhost:3000/messages';
 
   constructor(private http: HttpClient) {
   }

@@ -34,7 +34,8 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {AppRoutingModule} from './app-routing.module';
 import {RegisterComponent} from './register/register.component';
 import {MessageService} from "./message.service";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {ListComponent} from './list/list.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {HttpClient} from "@angular/common/http";
     FooterComponent,
     HeaderComponent,
     MainBodyComponent,
-    RegisterComponent
+    RegisterComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,7 @@ import {HttpClient} from "@angular/common/http";
     AppRoutingModule,
     MatBadgeModule,
     MatSliderModule,
-    HttpClient
+    HttpClientModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
