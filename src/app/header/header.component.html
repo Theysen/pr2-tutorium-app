@@ -14,23 +14,23 @@
 
   <span>
 
-<div *ngIf="!getLoginStatus()">
-     <form class="Login">
-  <mat-form-field>
-    <input type="text" matInput placeholder="Username" class="buttons">
-  </mat-form-field>
-        <span class="placeholder"> </span>
-  <mat-form-field>
-    <input type="password" matInput placeholder="Password" class="buttons">
-  </mat-form-field>
-        <button mat-flat-button color="primary" (onSubmit)="loginUser()" class="buttons"
-                routerLinkActive="active" routerLink="/dashboard">Login
-        </button>
-        <button mat-flat-button color="primary" class="buttons" onclick="location.href='register';">Register</button>
+<!--<div>-->
+    <!--<form class="Login">-->
+    <!--<mat-form-field>-->
+    <!--<input type="text" matInput placeholder="Username" class="buttons">-->
+    <!--</mat-form-field>-->
+    <!--<span class="placeholder"> </span>-->
+    <!--<mat-form-field>-->
+    <!--<input type="password" matInput placeholder="Password" class="buttons">-->
+    <!--</mat-form-field>-->
+    <!--<button mat-flat-button color="primary" class="buttons"-->
+    <!--routerLinkActive="active" routerLink="/dashboard">Login-->
+    <!--</button>-->
+    <!--<button mat-flat-button color="primary" class="buttons" onclick="location.href='register';">Register</button>-->
 
-</form>2
-</div>
-    <div *ngIf="getLoginStatus()">
+    <!--</form>-->
+    <!--</div>-->
+    <div>
 <nav>
     <button mat-flat-button color="primary" class="buttons" routerLinkActive="active" routerLink="/profile">
     <mat-icon>face
@@ -39,7 +39,7 @@
       matBadge="2"
       matBadgePosition="before below"
       matBadgeColor="accent">event</mat-icon> Termine</button>
-    <button mat-flat-button color="primary" class="buttons" > <mat-icon
+    <button mat-flat-button color="primary" class="buttons"> <mat-icon
       matBadge="15" matBadgePosition="before below" matBadgeColor="accent">email</mat-icon> Messages</button>
    <button mat-flat-button color="primary" class="buttons" routerLinkActive="active" routerLink="/login"> <mat-icon>
      power_settings_new</mat-icon> Log out</button>
