@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import * as util from 'util' // has no default export
+import { inspect } from 'util' // or directly
 
 
 @Injectable({
@@ -20,11 +22,15 @@ export class MessageService {
     return this.http.get(`${this.uri}/${id}`);
   }
 
-  addMessage(author, content) {
+
+  addMessage(author, title, content) {
     const message = {
+      title: title,
       author: author,
-      content: content
+      content: content,
+      date: Date.now()
     };
+
     return this.http.post(`${this.uri}`, message);
   }
 

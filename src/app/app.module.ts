@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {NgModule} from '@angular/core';
 import {FormsModule} from "@angular/forms";
-
+import {ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {CalendarComponent} from './calendar/calendar.component';
@@ -28,7 +28,8 @@ import {
   MatSliderModule,
   MatSortModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatSelectModule
 } from '@angular/material';
 import {LayoutModule} from '@angular/cdk/layout';
 import {AppRoutingModule} from './app-routing.module';
@@ -36,6 +37,7 @@ import {RegisterComponent} from './register/register.component';
 import {MessageService} from "./message.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ListComponent} from './list/list.component';
+import { ComposeMessageComponent } from './compose-message/compose-message.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import {ListComponent} from './list/list.component';
     HeaderComponent,
     MainBodyComponent,
     RegisterComponent,
-    ListComponent
+    ListComponent,
+    ComposeMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,9 @@ import {ListComponent} from './list/list.component';
     AppRoutingModule,
     MatBadgeModule,
     MatSliderModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

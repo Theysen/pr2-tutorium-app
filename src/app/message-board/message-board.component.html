@@ -1,8 +1,8 @@
 <div class="messages">
-  <mat-card class="mat-elevation-z6" *ngFor="let entry of entries">
-    <mat-card-title>{{entry.title}}
+  <mat-card class="mat-elevation-z6" *ngFor="let message of messagesFromDatabase">
+    <mat-card-title>{{message.title}}
     </mat-card-title>
-    <mat-card-subtitle>{{entry.dateCreated}}</mat-card-subtitle>
-    <mat-card-content>{{entry.content}}</mat-card-content>
+    <mat-card-subtitle>{{message.author}} | {{message.date}}</mat-card-subtitle>
+    <mat-card-content>{{message.body}}</mat-card-content>
   </mat-card>
 </div>

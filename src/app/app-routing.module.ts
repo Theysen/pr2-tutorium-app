@@ -4,6 +4,7 @@ import {MainBodyComponent} from "./main-body/main-body.component";
 import {CalendarComponent} from "./calendar/calendar.component";
 import {RegisterComponent} from "./register/register.component";
 import {ListComponent} from "./list/list.component";
+import {ComposeMessageComponent} from './compose-message/compose-message.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -11,7 +12,8 @@ const routes: Routes = [
   {path: 'dashboard', component: MainBodyComponent},
   {path: 'calendar', component: CalendarComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'list', component: ListComponent}
+  {path: 'list', component: ListComponent},
+  {path: 'new', component: ComposeMessageComponent}
 ];
 
 @NgModule({

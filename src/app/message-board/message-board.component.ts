@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Message} from "./Message";
+import {Component, OnInit} from '@angular/core';
+import {MessageService} from "../message.service";
 
 @Component({
   selector: 'app-message-board',
@@ -8,24 +8,23 @@ import {Message} from "./Message";
 })
 export class MessageBoardComponent implements OnInit {
 
-  entries: Message[] = Array();
+  messagesFromDatabase: any;
 
-
-  constructor() {
-
-    for(var _i =0;_i<10;_i++){
-      const message = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\n";
-      const title = "Überschrift";
-      const dateCreated = new Date().toDateString();
-
-      this.entries.push(new Message(title, message, dateCreated));
-      this.entries.push(new Message(title, message, dateCreated));
-    }
-
-
+  constructor(private messageService: MessageService) {
   }
 
   ngOnInit() {
+
+    // this.messageService.addMessage("Lukas Theisen", "Hello World").subscribe((message) => {
+    //   console.log(message);
+    // })
+
+
+    this.messageService.getMessages().subscribe((messages) => {
+      this.messagesFromDatabase = messages;
+    });
+
+
   }
 
 }

@@ -1,0 +1,43 @@
+
+  <div class="messages">
+    <mat-card class="mat-elevation-z6" >
+      <mat-card-header>New messages</mat-card-header>
+<form [formGroup]="newMessage" [hidden]="sucess" (ngSubmit)="submitHandler()">
+
+  <mat-card-content class="drunter">
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Author" id="author" name="author" formControlName="author">
+    <mat-error *ngIf="author.touched && !author.valid">
+      <div *ngIf="author.errors.required">This field is required</div>
+      <div *ngIf="author.errors.minlength || author.errors.maxLength">The author has to be between 3 and 20 characters long</div>
+      <div *ngIf="author.errors.pattern">You may only use charakters and numbers</div>
+
+     </mat-error>
+  </mat-form-field>
+    <br>
+  <mat-form-field appearance="outline">
+    <input  matInput placeholder="Title" id="title" name="title" formControlName="title" required minlength="5" maxlength="50">
+    <mat-error *ngIf="title.touched && !title.valid">
+      <div *ngIf="title.errors.required">This field is required</div>
+      <div *ngIf="title.errors.minlength || title.errors.maxLength">The author has to be between 5 and 50 characters long</div>
+      <div *ngIf="title.errors.pattern">You may only use charakters, numbers and following chars: " ,.!?-"</div>
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+  <textarea matInput placeholder="Text" class="text"  formControlName="body" cdkTextareaAutosize cdkAutosizeMinRows="6" cdkAutosizeMaxRows="15" id="body" name="body">
+  </textarea>
+    <mat-error *ngIf="body.touched && !body.valid">
+      <div *ngIf="body.errors.required">This field is required</div>
+      <div *ngIf="body.errors.pattern">You may only use charakters, numbers and following chars: " ,.!?-"</div>
+    </mat-error>
+  </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions class="drunter2">
+    <button mat-raised-button [disabled]="newMessage.invalid" color="accent" type="submit">SendRIGHT</button>
+    <button mat-raised-button color="accent" type="submit" routerLinkActive="active" routerLink="/dashboard">Send2</button>
+  </mat-card-actions>
+      </form>
+  <div *ngIf="sucess">HURRRRRRRAAAY</div>
+    </mat-card>
+  </div>

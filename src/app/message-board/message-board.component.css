@@ -3,13 +3,9 @@
   padding: 1rem;
   z-index: -1;
 }
-.messages2{
-  border-style: dot-dash;
-  border: antiquewhite;
-  border-bottom-style: groove;
-}
 .mat-elevation-z6{
   margin: 2rem;
+
 }
 .example-fill-remaining-space {
   /* This fills the remaining space, by using flexbox.
