@@ -47,7 +47,7 @@ export class ComposeMessageComponent implements OnInit {
   async submitHandler() {
     this.loading = true;
     try {
-          this.messageService.addMessage(this.author, this.title, this.body).subscribe((message) => {
+          this.messageService.addMessage(this.author.value, this.title.value, this.body.value).subscribe((message) => {
         console.log(message);
        });
           this.sucess = true;

@@ -23,11 +23,11 @@ export class MessageService {
   }
 
 
-  addMessage(author, title, content) {
+  addMessage(author, title, body) {
     const message = {
       title: title,
       author: author,
-      content: content,
+      body: body,
       date: Date.now()
     };
 

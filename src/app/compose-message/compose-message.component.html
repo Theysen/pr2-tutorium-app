@@ -16,7 +16,7 @@
   </mat-form-field>
     <br>
   <mat-form-field appearance="outline">
-    <input  matInput placeholder="Title" id="title" name="title" formControlName="title" required minlength="5" maxlength="50">
+    <input  matInput placeholder="Title" id="title" name="title" formControlName="title">
     <mat-error *ngIf="title.touched && !title.valid">
       <div *ngIf="title.errors.required">This field is required</div>
       <div *ngIf="title.errors.minlength || title.errors.maxLength">The author has to be between 5 and 50 characters long</div>

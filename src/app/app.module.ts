@@ -29,7 +29,9 @@ import {
   MatSortModule,
   MatTableModule,
   MatToolbarModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 } from '@angular/material';
 import {LayoutModule} from '@angular/cdk/layout';
 import {AppRoutingModule} from './app-routing.module';
@@ -77,7 +79,10 @@ import { ComposeMessageComponent } from './compose-message/compose-message.compo
     MatSliderModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
