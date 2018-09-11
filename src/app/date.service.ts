@@ -7,34 +7,34 @@ import {inspect} from 'util' // or directly
 @Injectable({
   providedIn: 'root'
 })
-export class MessageService {
+export class DateService {
 
-  uri: String = 'http://localhost:3000/messages';
+  uri: String = 'http://localhost:3000/dates';
 
   constructor(private http: HttpClient) {
   }
 
-  getMessages() {
+  getDates() {
     return this.http.get(`${this.uri}`);
   }
 
-  getMessagesById(id) {
+  getDateById(id) {
     return this.http.get(`${this.uri}/${id}`);
   }
 
 
-  addMessage(author, title, body) {
-    const message = {
-      title: title,
-      author: author,
-      body: body,
-      date: Date.now()
+  addDate(day, month, year, bookedByGroup) {
+    const date = {
+      day: day,
+      month: month,
+      year: year,
+      bookedByGroup: bookedByGroup
     };
 
-    return this.http.post(`${this.uri}`, message);
+    return this.http.post(`${this.uri}`, date);
   }
 
-  deleteMessage(id) {
-    return this.http.delete(`${this.uri}/{id}`);
-  }
+  // deleteDate(id) {
+  //   return this.http.delete(`${this.uri}/{id}`);
+  // }
 }
