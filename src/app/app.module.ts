@@ -40,6 +40,7 @@ import {MessageService} from "./message.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ListComponent} from './list/list.component';
 import { ComposeMessageComponent } from './compose-message/compose-message.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { ComposeMessageComponent } from './compose-message/compose-message.compo
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NgbModule
 
   ],
   providers: [MessageService],

@@ -1,7 +1,7 @@
 
   <div class="messages">
     <mat-card class="mat-elevation-z6" >
-      <mat-card-header>New messages</mat-card-header>
+      <mat-card-header></mat-card-header>
 <form [formGroup]="newMessage" [hidden]="sucess" (ngSubmit)="submitHandler()">
 
   <mat-card-content class="drunter">
@@ -40,4 +40,5 @@
       </form>
   <div *ngIf="sucess">HURRRRRRRAAAY</div>
     </mat-card>
+
   </div>

@@ -1,9 +1,22 @@
 <div class="messages">
-<mat-card class="mat-elevation-z6" >
-  <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-</mat-card>
+  <mat-card class="mat-elevation-z6" >
+    <ngb-datepicker #cal (select)="onDateSelection($event)" [dayTemplate]="t">
+    </ngb-datepicker>
+
+    <ng-template #t let-date="date" let-focused="focused">
+  <span class="calendar"
+        [class.focused]="focused"
+        [class.free]="isFree(date)"
+        [class.full] ="isFull(date)"
+        [class.selected] = "isSelected(date)"
+        [class.past] = "isPast(date)"
+
+        (mouseenter)="hoveredDate = date"
+        (mouseleave)="hoveredDate = null">
+    {{ date.day }}
+  </span>
+    </ng-template>
+    <p mat-line>{{getDate().day}} / {{getDate().month}} / {{getDate().year}}</p>
+
+  </mat-card>
   </div>
