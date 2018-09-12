@@ -1,18 +1,50 @@
 .messages {
-  magin: 1.5rem;
-  padding: 1rem;
+  magin-bottom: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
   z-index: -1;
 
 }
 
-.mat-elevation-z6{
-  margin: 2rem;
-  padding: 2rem;
-}
-.example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox.
-     Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
+.mat-elevation-z6 {
+  margin: 1rem;
 }
 
 
+.calendar {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+
+}
+
+.calendar.free {
+  background-color: rgba(83, 109, 254, 0.5);
+}
+
+.calendar.full {
+  background-color: rgba(255, 82, 82, 0.5);
+}
+
+.calendar.selected {
+  background-color: rgba(48, 63, 159, 0.8);
+  color: white;
+}
+
+.calendar:hover {
+  background-color: rgba(48, 63, 159, 0.8);
+  color: white;
+}
+
+.calendar.past {
+  color: #cccccc;
+}
+.ye{
+  width: 300px;
+}
+.datepicker{
+  width:234px;
+  height:267px;
+}

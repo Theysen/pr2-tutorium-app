@@ -1,23 +1,13 @@
 .messages {
-  magin: 1.5rem;
-  padding: 1rem;
+  magin: 1rem;
   z-index: -1;
 
 }
-.messages2{
-  border-style: dot-dash;
-  border: antiquewhite;
-  border-bottom-style: groove;
-}
 .mat-elevation-z6{
-  margin: 2rem;
-  padding: 2rem;
+  margin: 1rem;
+  padding: 1rem;
 }
-.example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox.
-     Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
-}
+
 .drunter{
   display: flex;
   flex-direction: column;
@@ -32,7 +22,5 @@
   padding: 2rem;
 
 }
-.text{
 
-}
 

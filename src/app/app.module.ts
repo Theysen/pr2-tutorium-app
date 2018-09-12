@@ -1,7 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {NgModule} from '@angular/core';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -12,7 +13,7 @@ import {AdminComponent} from './admin/admin.component';
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {MainBodyComponent} from './main-body/main-body.component';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatBadgeModule,
   MatButtonModule,
@@ -36,11 +37,13 @@ import {
 import {LayoutModule} from '@angular/cdk/layout';
 import {AppRoutingModule} from './app-routing.module';
 import {RegisterComponent} from './register/register.component';
-import {MessageService} from "./message.service";
-import {HttpClientModule} from "@angular/common/http";
+import {MessageService} from './message.service';
+import {HttpClientModule} from '@angular/common/http';
 import {ListComponent} from './list/list.component';
-import { ComposeMessageComponent } from './compose-message/compose-message.component';
+import {ComposeMessageComponent} from './compose-message/compose-message.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -55,7 +58,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MainBodyComponent,
     RegisterComponent,
     ListComponent,
-    ComposeMessageComponent
+    ComposeMessageComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +87,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgbModule
+    NgbModule,
+    FlexLayoutModule
 
   ],
   providers: [MessageService],
