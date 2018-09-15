@@ -1,9 +1,15 @@
-.head {
-  height: 30px;
+#main{
+  overflow: auto;
+  padding: 1.5rem;
+  padding-bottom: 150px;
+  padding-top: 100px;
 }
-
-.body {
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 2%;
+#container{
+  min-height: 100%;
+}
+#footer{
+  position: relative;
+  height: 120px;
+  margin-top: -120px;
+  clear: both;
 }
