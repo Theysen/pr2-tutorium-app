@@ -68,7 +68,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.delete('/:messageId', (req, res, next) => {
-  Message.findByIdAndRemove(req.params.messageId, function(err) {
+  Message.findOneAndDelete(req.params.messageId, function(err) {
     if (err)
       res.send(err);
     else

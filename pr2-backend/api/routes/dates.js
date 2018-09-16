@@ -69,7 +69,7 @@ router.get('/:dateId', (req, res, next) => {
 });
 
 router.delete('/:dateId', (req, res, next) => {
-  Date.findByIdAndRemove(req.params.dateId, function(err) {
+  Date.findOneAndDelete(req.params.dateId, function(err) {
     if (err)
       res.send(err);
     else
