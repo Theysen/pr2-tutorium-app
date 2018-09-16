@@ -1,26 +1,25 @@
-<div class="sth">
-<mat-card class="mat-elevation-z6">
-  <mat-card-title>Appointment</mat-card-title>
-  <mat-card-subtitle>Use this form to make an appointment with your tutors.</mat-card-subtitle>
-  <mat-card-content fxLayout="column">
-    <div fxFlex="1 1 100%" >
-      <p>
-        - choose a valid (blue) date<br>
-        - fill out the form<br>
-        - come to the appointment<br>
-        - profit
-      </p>
-      <mat-divider></mat-divider>
-    </div>
+<div class="sth" *ngIf="!sucess">
+  <mat-card class="mat-elevation-z6">
+    <mat-card-title>Appointment</mat-card-title>
+    <mat-card-subtitle>Use this form to make an appointment with your tutors.</mat-card-subtitle>
+    <mat-card-content fxLayout="column">
+      <div fxFlex="1 1 100%">
+        <p>
+          - choose a valid (blue) date<br>
+          - fill out the form<br>
+          - come to the appointment<br>
+          - profit
+        </p>
+        <mat-divider></mat-divider>
+      </div>
 
 
-    <div class="datepicker" fxFlexAlign="center" fxFlex="1 1 100%">
-      <br>
-      <ngb-datepicker #cal [(ngModel)]="model" (select)="onDateSelection($event)" [dayTemplate]="t">
-      </ngb-datepicker>
-      <ng-template #t let-date="date" let-focused="focused">
+      <div class="datepicker" fxFlexAlign="center" fxFlex="1 1 100%">
+        <br>
+        <ngb-datepicker #cal [(ngModel)]="model" (select)="onDateSelection($event)" [dayTemplate]="t">
+        </ngb-datepicker>
+        <ng-template #t let-date="date" let-focused="focused">
          <span class="calendar"
-
                [class.focused]="focused"
                [class.free]="isFree(date)"
                [class.full]="isFull(date)"
@@ -28,40 +27,64 @@
                [class.past]="isPast(date)"
                (mouseenter)="hoveredDate = date"
                (mouseleave)="hoveredDate = null">
+
             {{ date.day }}
           </span>
-      </ng-template>
-    </div>
-    <br>
-    <div><br>
-      <form fxLayout="column">
-        <mat-form-field appearance="outline" fxFlex="1 1 100%">
-          <input matInput placeholder="Date" [disabled]="true"
-                 value="{{getDate().day}} / {{getDate().month}} / {{getDate().year}}" id="author" name="author">
+        </ng-template>
+      </div>
+      <br>
+      <div><br>
+        <form fxLayout="column" [formGroup]="newAppointment" (ngSubmit)="submitHandler()">
+          <mat-form-field appearance="outline" fxFlex="1 1 100%">
+            <input matInput placeholder="Date" [disabled]="true"
+                   value="{{getSelectedDateToString()}}" name="date">
 
-        </mat-form-field>
-        <mat-form-field appearance="outline" fxFlex="1 1 100%">
-          <mat-select placeholder="Gruppenname">
-            <mat-option>
-              A
-            </mat-option>
-            <mat-option>
-              B
-            </mat-option>
-            <mat-option>
-              C
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline" fxFlex="1 1 100%">
-              <textarea matInput placeholder="Text" class="text" cdkTextareaAutosize cdkAutosizeMinRows="6"
-                        cdkAutosizeMaxRows="15" id="body" name="body">
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="1 1 100%">
+            <mat-select [(value)]="selected"  formControlName="group">
+              <mat-option value="A">Gruppe A</mat-option>
+              <mat-option value="B">Gruppe B</mat-option>
+              <mat-option value="C">Gruppe C</mat-option>
+            </mat-select>
+            <mat-error *ngIf="group.touched && !group.valid">
+              <div *ngIf="group.errors.required">This field is required</div>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="1 1 100%">
+              <textarea matInput placeholder="Describe shortly the subject of your appointment." class="text" cdkTextareaAutosize cdkAutosizeMinRows="6"
+                        cdkAutosizeMaxRows="15" id="body" name="body" formControlName="msg" (change)="val()" ng-model="msg2">
   </textarea>
+            <span matSuffix>{{msg.value.length}}/150</span>
+            <mat-error *ngIf="msg.touched && !msg.valid">
+              <div *ngIf="msg.errors.required">This field is required</div>
+              <div *ngIf="msg.errors.maxLength">The author has to be between 3 and 20
+                characters long
+              </div>
+              <div *ngIf="msg.errors.pattern">You may only use charakters and numbers</div>
 
-        </mat-form-field>
-        <button mat-raised-button color="accent">Send2</button>
-      </form>
-    </div>
-  </mat-card-content>
-</mat-card>
+            </mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="accent" type="submit" [disabled]="newAppointment.invalid">make appointment</button>
+          <mat-error *ngIf="!date.valid && (msg.touched || group.touched)">
+            You have to pick a date.
+          </mat-error>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="sth" *ngIf="sucess">
+  <mat-card class="mat-elevation-z6">
+    <mat-card-title>Appointmend booked!</mat-card-title>
+    <mat-card-subtitle>As a reminder:</mat-card-subtitle>
+    <mat-card-content fxLayout="column">
+      <span fxFlex="1 1 100%"> date : {{getSelectedDateToString()}}</span>
+      <span fxFlex="1 1 100%"> group : {{group.value}}</span>
+      <span fxFlex="1 1 100%"> subject : {{msg.value}}</span>
+      <br>
+      <button mat-raised-button color="accent" fxFlex="1 1 100%" routerLinkActive="active" routerLink="/dashboard" (click)="reload()">got it!</button>
+    </mat-card-content>
+   </mat-card>
 </div>
