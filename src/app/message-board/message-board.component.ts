@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MessageService} from "../message.service";
+import {MessageService} from '../message.service';
 
 @Component({
   selector: 'app-message-board',
@@ -15,9 +15,7 @@ export class MessageBoardComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.messageService.addMessage("Lukas Theisen", "Hello World").subscribe((message) => {
-    //   console.log(message);
-    // })
+
 
 
     this.messageService.getMessages().subscribe((messages) => {

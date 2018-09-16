@@ -6,8 +6,9 @@
 
 }
 
-.mat-elevation-z6 {
+.mat-elevation-z6{
   margin: 1rem;
+
 }
 
 
@@ -47,4 +48,8 @@
 .datepicker{
   width:234px;
   height:267px;
+}
+.sth{
+  z-index: -20;
+
 }

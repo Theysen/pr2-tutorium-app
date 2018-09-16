@@ -7,22 +7,6 @@
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
-.title{
-  margin-left: 2rem;
+.head-component{
+  padding-right: 0.5rem;
 }
-.login{
-  margin-right: 2rem;
-}
-.Login{
-  padding-top: 1.2em;
-  font-size: smaller;
-}
-.example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox.
-     Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
-}
-.placeholder{
-  padding-right: 2rem;
-}
-

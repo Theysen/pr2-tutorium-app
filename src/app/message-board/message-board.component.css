@@ -1,15 +1,6 @@
-.messages {
-  magin-bottom: 1rem;
-  margin-top: 1rem;
-  z-index: -1;
-}
 .mat-elevation-z6{
   margin: 1rem;
-}
-.example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox.
-     Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
+  z-index: -1;
 }
 
 

@@ -34,7 +34,8 @@ export class DateService {
     return this.http.post(`${this.uri}`, date);
   }
 
-  // deleteDate(id) {
-  //   return this.http.delete(`${this.uri}/{id}`);
-  // }
+
+  deleteDate(id) {
+  return this.http.delete(`${this.uri}/{id}`);
+  }
 }
