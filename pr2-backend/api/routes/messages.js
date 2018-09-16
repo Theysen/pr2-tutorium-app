@@ -68,9 +68,12 @@ router.get('/', (req, res, next) => {
 });
 
 router.delete('/:messageId', (req, res, next) => {
-  Message.findByIdAndRemove(req.params.messageId).exec().then(() => {
-    res.status(200).json("Successfully deleted!");
-  })
+  Message.findByIdAndRemove(req.params.messageId, function(err) {
+    if (err)
+      res.send(err);
+    else
+      res.json({ message: 'Offer Deleted!'});
+  });
 });
 
 module.exports = router;
