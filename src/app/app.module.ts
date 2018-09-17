@@ -5,14 +5,10 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
-import {LoginComponent} from './login/login.component';
-import {CalendarComponent} from './calendar/calendar.component';
-import {MessageBoardComponent} from './message-board/message-board.component';
-import {ProfileComponent} from './profile/profile.component';
-import {AdminComponent} from './admin/admin.component';
-import {FooterComponent} from './footer/footer.component';
-import {HeaderComponent} from './header/header.component';
-import {MainBodyComponent} from './main-body/main-body.component';
+import {CalendarComponent} from './components/body/dashboard/calendar/calendar.component';
+import {MessageBoardComponent} from './components/body/dashboard/message-board/message-board.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {HeaderComponent} from './components/header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatBadgeModule,
@@ -36,28 +32,20 @@ import {
 } from '@angular/material';
 import {LayoutModule} from '@angular/cdk/layout';
 import {AppRoutingModule} from './app-routing.module';
-import {RegisterComponent} from './register/register.component';
-import {MessageService} from './message.service';
+import {MessageService} from './services/message.service';
 import {HttpClientModule} from '@angular/common/http';
-import {ListComponent} from './list/list.component';
-import {ComposeMessageComponent} from './compose-message/compose-message.component';
+import {ComposeMessageComponent} from './components/body/compose-message/compose-message.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './components/body/dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     CalendarComponent,
     MessageBoardComponent,
-    ProfileComponent,
-    AdminComponent,
     FooterComponent,
     HeaderComponent,
-    MainBodyComponent,
-    RegisterComponent,
-    ListComponent,
     ComposeMessageComponent,
     DashboardComponent
   ],

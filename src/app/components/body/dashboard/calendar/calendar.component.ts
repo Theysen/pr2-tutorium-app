@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbDate, NgbCalendar, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
-import {DateService} from '../date.service';
+import {DateService} from '../../../../services/date.service';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {MessageService} from '../message.service';
+import {MessageService} from '../../../../services/message.service';
 import {group} from '@angular/animations';
 
 let dateIsValid = false;
