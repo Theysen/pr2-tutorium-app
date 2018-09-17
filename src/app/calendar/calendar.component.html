@@ -41,7 +41,7 @@
 
           </mat-form-field>
           <mat-form-field appearance="outline" fxFlex="1 1 100%">
-            <mat-select [(value)]="selected"  formControlName="group">
+            <mat-select [(value)]="selected" formControlName="group" placeholder="Group Name">
               <mat-option value="A">Gruppe A</mat-option>
               <mat-option value="B">Gruppe B</mat-option>
               <mat-option value="C">Gruppe C</mat-option>
@@ -52,8 +52,10 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline" fxFlex="1 1 100%">
-              <textarea matInput placeholder="Describe shortly the subject of your appointment." class="text" cdkTextareaAutosize cdkAutosizeMinRows="6"
-                        cdkAutosizeMaxRows="15" id="body" name="body" formControlName="msg" (change)="val()" ng-model="msg2">
+              <textarea matInput placeholder="Describe shortly the subject of your appointment." class="text"
+                        cdkTextareaAutosize cdkAutosizeMinRows="6"
+                        cdkAutosizeMaxRows="15" id="body" name="body" formControlName="msg" (change)="val()"
+                        ng-model="msg2">
   </textarea>
             <span matSuffix>{{msg.value.length}}/150</span>
             <mat-error *ngIf="msg.touched && !msg.valid">
@@ -65,7 +67,8 @@
 
             </mat-error>
           </mat-form-field>
-          <button mat-raised-button color="accent" type="submit" [disabled]="newAppointment.invalid">make appointment</button>
+          <button mat-raised-button color="accent" type="submit" [disabled]="newAppointment.invalid">make appointment
+          </button>
           <mat-error *ngIf="!date.valid && (msg.touched || group.touched)">
             You have to pick a date.
           </mat-error>
@@ -75,7 +78,7 @@
   </mat-card>
 </div>
 
-<div class="sth" *ngIf="sucess">
+<div class="sth" *ngIf="success">
   <mat-card class="mat-elevation-z6">
     <mat-card-title>Appointmend booked!</mat-card-title>
     <mat-card-subtitle>As a reminder:</mat-card-subtitle>
@@ -84,7 +87,9 @@
       <span fxFlex="1 1 100%"> group : {{group.value}}</span>
       <span fxFlex="1 1 100%"> subject : {{msg.value}}</span>
       <br>
-      <button mat-raised-button color="accent" fxFlex="1 1 100%" routerLinkActive="active" routerLink="/dashboard" (click)="reload()">got it!</button>
+      <button mat-raised-button color="accent" fxFlex="1 1 100%" routerLinkActive="active" routerLink="/dashboard"
+              (click)="reload()">got it!
+      </button>
     </mat-card-content>
-   </mat-card>
+  </mat-card>
 </div>

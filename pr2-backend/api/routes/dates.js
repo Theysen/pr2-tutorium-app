@@ -10,7 +10,8 @@ router.post('/', (req, res, next) => {
     day: req.body.day,
     month: req.body.month,
     year: req.body.year,
-    bookedByGroup: req.body.bookedByGroup
+    bookedByGroup: req.body.bookedByGroup,
+    subject: req.body.subject
   });
   date
     .save()

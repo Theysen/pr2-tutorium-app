@@ -29,18 +29,24 @@ export class CalendarComponent implements OnInit {
   selectedDate: NgbDate;
   newAppointment: FormGroup;
   loading = false;
-  sucess = false;
+  success = false;
 
   constructor(private calendar: NgbCalendar, private dateService: DateService, private fb: FormBuilder) {
     this.freeDates = [];
     this.fullDates = [];
     console.log('dates');
-    this.dateService.getDates().subscribe((messages) => {
-      for (const msg of messages) {
-        this.fullDates.push(new NgbDate(msg.year, msg.month, msg.day));
+    this.dateService.getDates().subscribe((dates: Response) => {
+
+      const generalDates: any = dates;
+
+      console.log(generalDates);
+      for (const a of generalDates) {
+        this.fullDates.push(new NgbDate(a.year, a.month, a.day));
       }
       console.log(this.fullDates);
     });
+
+
     console.log('dates');
   }
 
@@ -165,10 +171,10 @@ export class CalendarComponent implements OnInit {
     try {
       this.dateService.addDate(
         this.selectedDate.day, this.selectedDate.month,
-        this.selectedDate.year, this.group.value).subscribe((message) => {
+        this.selectedDate.year, this.group.value, this.msg.value).subscribe((message) => {
         console.log(message);
       });
-      this.sucess = true;
+      this.success = true;
     } catch (e) {
       console.error(e);
     }

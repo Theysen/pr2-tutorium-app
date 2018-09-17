@@ -23,12 +23,13 @@ export class DateService {
   }
 
 
-  addDate(day, month, year, bookedByGroup) {
+  addDate(day, month, year, bookedByGroup, subject) {
     const date = {
       day: day,
       month: month,
       year: year,
-      bookedByGroup: bookedByGroup
+      bookedByGroup: bookedByGroup,
+      subject: subject
     };
 
     return this.http.post(`${this.uri}`, date);

@@ -6,6 +6,7 @@ const dateSchema = mongoose.Schema({
   month: Number,
   year: Number,
   bookedByGroup: String,
+  subject: String,
   date: {type: Date, default: Date.now}
 });
 
