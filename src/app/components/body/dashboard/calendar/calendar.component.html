@@ -18,16 +18,15 @@
         <br>
         <ngb-datepicker #cal [(ngModel)]="model" (select)="onDateSelection($event)" [dayTemplate]="t">
         </ngb-datepicker>
-        <ng-template #t let-date="date" let-focused="focused">
+        <ng-template #t let-date="date">
          <span class="calendar"
-               [class.focused]="focused"
                [class.free]="isFree(date)"
+               [class.completlyFree]="isCompletlyFree(date)"
                [class.full]="isFull(date)"
                [class.selected]="isSelected(date)"
                [class.past]="isPast(date)"
                (mouseenter)="hoveredDate = date"
                (mouseleave)="hoveredDate = null">
-
             {{ date.day }}
           </span>
         </ng-template>
@@ -36,9 +35,11 @@
       <div><br>
         <form fxLayout="column" [formGroup]="newAppointment" (ngSubmit)="submitHandler()">
           <mat-form-field appearance="outline" fxFlex="1 1 100%">
-            <input matInput placeholder="Datum" [disabled]="true"
-                   value="{{getSelectedDateToString()}}" name="date">
 
+            <textarea matInput placeholder="Datum" [disabled]="true" cdkTextareaAutosize cdkAutosizeMinRows="2"
+                      cdkAutosizeMaxRows="2" name="date" class="date"> {{getSelectedDateToString()}}
+  </textarea>
+          <span matSuffix> {{getSlotString()}}</span>
           </mat-form-field>
           <mat-form-field appearance="outline" fxFlex="1 1 100%">
             <mat-select [(value)]="selected" formControlName="group" placeholder="Gruppenname">
