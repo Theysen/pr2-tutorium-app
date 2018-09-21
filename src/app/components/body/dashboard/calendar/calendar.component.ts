@@ -16,6 +16,23 @@ function dateValidator(control: AbstractControl) {
   return null;
 }
 
+class ServerDate {
+  Date: NgbDate;
+  startTime: string;
+  endTime: string;
+  possibleSlots: number;
+  bookedSlots: number;
+
+  constructor(year: number, month: number, day: number, startTime: string, endTime: string, possibleSlots: number, bookedSlots: number) {
+    this.Date = new NgbDate(year, month, day);
+    this.startTime = startTime;
+    this.endTime = endTime;
+    this.possibleSlots = possibleSlots;
+    this.bookedSlots = bookedSlots;
+  }
+
+}
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -23,37 +40,33 @@ function dateValidator(control: AbstractControl) {
 })
 
 export class CalendarComponent implements OnInit {
-
-  freeDates: NgbDate[];
-  fullDates: NgbDate[];
-  selectedDate: NgbDate;
+  allDates: ServerDate[];
+  selectedDate: ServerDate;
   newAppointment: FormGroup;
   loading = false;
   success = false;
 
   constructor(private calendar: NgbCalendar, private dateService: DateService, private fb: FormBuilder) {
-    this.freeDates = [];
-    this.fullDates = [];
+
+    this.allDates = [];
     console.log('dates');
     this.dateService.getDates().subscribe((dates: Response) => {
-
       const generalDates: any = dates;
-
-      console.log(generalDates);
-      for (const a of generalDates) {
-        this.fullDates.push(new NgbDate(a.year, a.month, a.day));
+      for (const data of generalDates) {
+        let newData: ServerDate;
+        newData = new ServerDate(data.year, data.month, data.day, data.startTime, data.endTime, data.possibleSlots, data.bookedSlots);
+        this.allDates.push(newData);
       }
-      console.log(this.fullDates);
     });
-
-
     console.log('dates');
+
   }
 
   onDateSelection(date: NgbDate) {
-    for (const dat of this.freeDates) {
-      if (date.equals(dat) && !this.isFull(date)) {
-        this.selectedDate = date;
+    for (const dat of this.allDates) {
+      if (date.equals(dat.Date) && !this.isFull(date)) {
+        console.log(typeof dat);
+        this.selectedDate = dat;
         dateIsValid = true;
         this.val();
         return true;
@@ -62,32 +75,25 @@ export class CalendarComponent implements OnInit {
     return false;
   }
 
-  // checks if date is free and pushes it (if free) to the free days array.
-  checkFreeDay(date: NgbDate) {
-    let isFree = false;
-    if ((this.calendar.getWeekday(date) === 2 || this.calendar.getWeekday(date) === 4) && !this.isPast(date)) {
-      isFree = true;
-      for (const day of this.fullDates) {
-        if (date.equals(day)) {
-          isFree = false;
-        }
+  isSelected(date: NgbDate) {
+    if (this.selectedDate === null) {
+      return false;
+    }
+    return date.equals(this.selectedDate.Date);
+  }
+
+  isFree(date: NgbDate): boolean {
+    for (const dat of this.allDates) {
+      if (date.equals(dat.Date) && (dat.bookedSlots >= 1) && (dat.bookedSlots < dat.possibleSlots)) {
+        return true;
       }
     }
-    if (isFree) {
-      this.freeDates.push(date);
-    }
+    return false;
   }
 
-  // checks if date is equals to selected date;
-  isSelected(date: NgbDate) {
-    return date.equals(this.selectedDate);
-  }
-
-  // runs the checkFreeDay function and checks afterwards if the date is in the free day list
-  isFree(date: NgbDate): boolean {
-    this.checkFreeDay(date);
-    for (const day of this.freeDates) {
-      if (day.equals(date)) {
+  isCompletlyFree(date: NgbDate) {
+    for (const dat of this.allDates) {
+      if (date.equals(dat.Date) && (dat.bookedSlots === 0)) {
         return true;
       }
     }
@@ -100,8 +106,9 @@ export class CalendarComponent implements OnInit {
 
   // checks if day is in the fullDay array
   isFull(date: NgbDate): boolean {
-    for (const dat of this.fullDates) {
-      if (date.equals(dat)) {
+    for (const dat of this.allDates) {
+
+      if (date.equals(dat.Date) && (dat.bookedSlots >= dat.possibleSlots)) {
         return true;
       }
     }
@@ -121,13 +128,9 @@ export class CalendarComponent implements OnInit {
       return null;
     } else {
       let out: String;
-      out = '';
-      out += this.selectedDate.day + '/' + this.selectedDate.month + '/' + this.selectedDate.year;
-      if (this.calendar.getWeekday(this.selectedDate) === 2) {
-        out += ' - 19:00 Uhr - H307';
-      } else if (this.calendar.getWeekday(this.selectedDate) === 4) {
-        out += ' - 16:00 Uhr - H503';
-      }
+      out += 'Datum: ' + this.selectedDate.Date.day + '/' + this.selectedDate.Date.month + '/' + this.selectedDate.Date.year
+      + ' - Raum: H299' + '\n'
+      + ' zwischen: ' + this.selectedDate.startTime + ' und ' + this.selectedDate.endTime + ' Uhr';
       return out;
     }
   }
@@ -154,6 +157,14 @@ export class CalendarComponent implements OnInit {
     this.newAppointment.valueChanges.subscribe(console.log);
   }
 
+  getSlotString() {
+    let out = '';
+    if (this.selectedDate != null) {
+      out += 'Slots: ' + this.selectedDate.bookedSlots + '/' + this.selectedDate.possibleSlots;
+      return out;
+    }
+  }
+
   get date() {
     return this.newAppointment.get('date');
   }
@@ -170,8 +181,8 @@ export class CalendarComponent implements OnInit {
     this.loading = true;
     try {
       this.dateService.addDate(
-        this.selectedDate.day, this.selectedDate.month,
-        this.selectedDate.year, this.group.value, this.msg.value).subscribe((message) => {
+        this.selectedDate.Date.day, this.selectedDate.Date.month,
+        this.selectedDate.Date.year, this.group.value, this.msg.value).subscribe((message) => {
         console.log(message);
       });
       this.success = true;
