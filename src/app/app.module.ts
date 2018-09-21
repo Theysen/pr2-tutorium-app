@@ -36,6 +36,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {ComposeMessageComponent} from './components/body/compose-message/compose-message.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DashboardComponent} from './components/body/dashboard/dashboard.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {DashboardComponent} from './components/body/dashboard/dashboard.componen
     FooterComponent,
     HeaderComponent,
     ComposeMessageComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

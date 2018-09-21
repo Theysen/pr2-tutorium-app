@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Date = require('../models/Date');
 
 router.post('/', (req, res, next) => {
+
   const date = new Date({
     _id: new mongoose.Types.ObjectId(),
     day: req.body.day,

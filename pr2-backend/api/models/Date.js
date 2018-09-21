@@ -5,7 +5,7 @@ const dateSchema = mongoose.Schema({
   day: Number,
   month: Number,
   year: Number,
-  bookedByGroup: String,
+  bookedByGroup: [String],
   subject: String,
   bookedSlots: {
     type: Number,
