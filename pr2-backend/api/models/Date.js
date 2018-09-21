@@ -7,6 +7,11 @@ const dateSchema = mongoose.Schema({
   year: Number,
   bookedByGroup: String,
   subject: String,
+  bookedSlots: Number,
+  possibleSlots: Number,
+  startTime: String,
+  endTime: String,
+  tutor: String
   date: {type: Date, default: Date.now}
 });
 
