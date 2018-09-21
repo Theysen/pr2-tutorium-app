@@ -11,7 +11,12 @@ router.post('/', (req, res, next) => {
     month: req.body.month,
     year: req.body.year,
     bookedByGroup: req.body.bookedByGroup,
-    subject: req.body.subject
+    subject: req.body.subject,
+    bookedSlots: req.body.bookedSlots,
+    possibleSlots: req.body.possibleSlots,
+    startTime: req.body.startTime,
+    endTime: req.body.endTime,
+    tutor: req.body.tutor
   });
   date
     .save()
@@ -45,7 +50,7 @@ router.get('/', (req, res, next) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({error: err});
+      res.status(500).json({ error: err });
     });
 });
 
@@ -65,18 +70,26 @@ router.get('/:dateId', (req, res, next) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({error: err});
+      res.status(500).json({ error: err });
     });
 });
 
 router.delete('/:dateId', (req, res, next) => {
-  Date.findOneAndDelete(req.params.dateId, function(err) {
+  Date.findOneAndDelete(req.params.dateId, function (err) {
     if (err)
       res.send(err);
     else
-      res.json({ message: 'Offer Deleted!'});
+      res.json({ message: 'Offer Deleted!' });
   });
 });
 
+router.put('/:dateId', (req, res, next) => {
+
+  Date.findOneAndUpdate(req.params.dateId, { $inc: { bookedSlots: 1 } }, { new: true }, function (err, date) {
+    if (err) return handleError(err);
+    res.send(date);
+  });
+
+})
 
 module.exports = router;

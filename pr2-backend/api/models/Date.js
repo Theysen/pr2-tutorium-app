@@ -7,7 +7,15 @@ const dateSchema = mongoose.Schema({
   year: Number,
   bookedByGroup: String,
   subject: String,
-  date: {type: Date, default: Date.now}
+  bookedSlots: {
+    type: Number,
+    max: 6
+  },
+  possibleSlots: Number,
+  startTime: String,
+  endTime: String,
+  tutor: String,
+  date: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Date', dateSchema);

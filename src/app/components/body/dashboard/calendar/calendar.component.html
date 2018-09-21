@@ -7,7 +7,7 @@
         <p>
           - Wählt einen freien Termin aus (blau)<br>
           - Füllt die restlichen Felder sinnvoll aus<br>
-          - Nehmt den ernsthaft Termin wahr<br>
+          - Nehmt den Termin ernsthaft wahr<br>
           - Profit :)
         </p>
         <mat-divider></mat-divider>
@@ -46,7 +46,7 @@
               <mat-option value="A">PR2 - Gruppe A.1</mat-option>
               <mat-option value="B">PR2 - Gruppe A.2</mat-option>
               <mat-option value="C">PR2 - Gruppe A.3</mat-option>
-              <mat-option value="A">PR1 - Beratung</mat-option>
+              <mat-option value="A">PR1 - Beratung (max 5 Teilnehmer)</mat-option>
             </mat-select>
             <mat-error *ngIf="group.touched && !group.valid">
               <div *ngIf="group.errors.required">This field is required</div>
