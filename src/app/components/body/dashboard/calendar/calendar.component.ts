@@ -128,7 +128,7 @@ export class CalendarComponent implements OnInit {
       return null;
     } else {
       let out: String;
-      out += 'Datum: ' + this.selectedDate.Date.day + '/' + this.selectedDate.Date.month + '/' + this.selectedDate.Date.year
+      out = 'Datum: ' + this.selectedDate.Date.day + '/' + this.selectedDate.Date.month + '/' + this.selectedDate.Date.year
       + ' - Raum: H299' + '\n'
       + ' zwischen: ' + this.selectedDate.startTime + ' und ' + this.selectedDate.endTime + ' Uhr';
       return out;
