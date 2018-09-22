@@ -37,6 +37,7 @@ import {ComposeMessageComponent} from './components/body/compose-message/compose
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DashboardComponent} from './components/body/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
+import { ComposeDateComponent } from './components/body/compose-date/compose-date.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { LoginComponent } from './components/login/login.component';
     HeaderComponent,
     ComposeMessageComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    ComposeDateComponent
   ],
   imports: [
     BrowserModule,
