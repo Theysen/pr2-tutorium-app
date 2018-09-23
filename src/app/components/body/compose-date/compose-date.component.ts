@@ -58,7 +58,7 @@ class ServerDate {
 
 export class ComposeDateComponent implements OnInit {
   allDates: ServerDate[];
-  selectedDate: ServerDate;
+  selectedDate: NgbDate;
   newAppointment: FormGroup;
   loading = false;
   success = false;
@@ -83,12 +83,11 @@ export class ComposeDateComponent implements OnInit {
 
   onDateSelection(date: NgbDate) {
     for (const dat of this.allDates) {
-      if (date.equals(dat.Date) && !this.isFull(date)) {
-        console.log(typeof dat);
-        this.selectedDate = dat;
+      if (date.equals(dat.Date)) {
+      }else {
         dateIsValid = true;
-        this.val();
-        return true;
+        this.selectedDate = date;
+        console.log(dateIsValid);
       }
     }
     return false;
@@ -98,7 +97,7 @@ export class ComposeDateComponent implements OnInit {
     if (this.selectedDate === null) {
       return false;
     }
-    return date.equals(this.selectedDate.Date);
+    return date.equals(this.selectedDate);
   }
 
   isFree(date: NgbDate): boolean {
@@ -147,9 +146,7 @@ export class ComposeDateComponent implements OnInit {
       return null;
     } else {
       let out: String;
-      out = 'Datum: ' + this.selectedDate.Date.day + '/' + this.selectedDate.Date.month + '/' + this.selectedDate.Date.year
-        + ' - Raum: H299' + '\n'
-        + ' zwischen: ' + this.selectedDate.startTime[0] + ':' + this.selectedDate.startTime[1] +' Uhr und ' + this.selectedDate.endTime[0] + ':' + this.selectedDate.endTime[1] +' Uhr';
+      out = 'Datum: ' + this.selectedDate.year + '/' + this.selectedDate.month + '/' + this.selectedDate.year
       return out;
     }
   }
@@ -164,9 +161,6 @@ export class ComposeDateComponent implements OnInit {
       date: ['', [
         dateValidator
       ]],
-      group: ['', [
-        Validators.required
-      ]],
       startStunde: ['', [
         Validators.required
       ]],
@@ -175,8 +169,6 @@ export class ComposeDateComponent implements OnInit {
       ]],
       slots: ['', [
         Validators.required,
-        Validators.pattern('[A-Za-z0-9 .,!?-]*'),
-        Validators.maxLength(150),
       ]]
     });
     this.newAppointment.valueChanges.subscribe(console.log);
@@ -185,7 +177,7 @@ export class ComposeDateComponent implements OnInit {
   getSlotString() {
     let out = '';
     if (this.selectedDate != null) {
-      out += 'Slots: ' + this.selectedDate.bookedSlots + '/' + this.selectedDate.possibleSlots;
+      out += 'Slots: ' + '/';
       return out;
     }
   }
@@ -204,7 +196,7 @@ export class ComposeDateComponent implements OnInit {
     this.loading = true;
     try{
       let time:number[];
-      this.dateService.bookSlot(this.selectedDate.Date.day,this.selectedDate.Date.month,this.selectedDate.Date.day,this.group.value,this.selectedDate.appTime,this.msg.value,7,202).subscribe((messages) => {
+      this.dateService.bookSlot(this.selectedDate.day,this.selectedDate.month,this.selectedDate.day,this.group.value,'1','hi',7,202).subscribe((messages) => {
         console.log(messages);
       });
     }catch (e) {

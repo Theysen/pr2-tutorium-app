@@ -4,9 +4,6 @@
   <mat-card-content fxLayout="column">
     <div fxFlex="1 1 100%">
       <p>
-        - Wählt einen freien Termin aus (blau)<br>
-        - Füllt die restlichen Felder sinnvoll aus<br>
-        - Nehmt den Termin ernsthaft wahr<br>
         - Profit :)
       </p>
       <mat-divider></mat-divider>
@@ -40,7 +37,6 @@
   </textarea>
           <span matSuffix> {{getSlotString()}}</span>
         </mat-form-field>
-
         <mat-form-field appearance="outline" fxFlex="1 1 100%">
           <input matInput placeholder="Slots" formControlName="slots">
 
@@ -55,9 +51,9 @@
 
   </mat-form-field>
 </div>
-        <button mat-raised-button color="accent" type="submit" [disabled]="newAppointment.invalid">Termin buchen
+        <button mat-raised-button color="accent" type="submit" [disabled]="newAppointment.invalid">Termin erstellen
         </button>
-        <mat-error *ngIf="!date.valid && (group.touched)">
+        <mat-error *ngIf="!date.valid">
           Bitte Datum auswählen
         </mat-error>
       </form>
@@ -70,8 +66,7 @@
   <mat-card-subtitle>Zusammenfassung zur Erinnerung:</mat-card-subtitle>
   <mat-card-content fxLayout="column">
     <span fxFlex="1 1 100%"> date : {{getSelectedDateToString()}}</span>
-    <span fxFlex="1 1 100%"> group : {{group.value}}</span>
-    <span fxFlex="1 1 100%"> subject : {{msg.value}}</span>
+
     <br>
     <button mat-raised-button color="accent" fxFlex="1 1 100%" routerLinkActive="active" routerLink="/dashboard"
             (click)="reload()">Verstanden!
