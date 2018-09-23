@@ -1,25 +1,18 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import * as util from 'util' // has no default export
-import {inspect} from 'util' // or directly
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  uri: String = 'http://localhost:3000/messages';
+  uri: String = 'http://localhost:4000/messages';
 
   constructor(private http: HttpClient) {
   }
 
   getMessages() {
     return this.http.get(`${this.uri}`);
-  }
-
-  getMessagesById(id) {
-    return this.http.get(`${this.uri}/${id}`);
   }
 
 
@@ -34,7 +27,4 @@ export class MessageService {
     return this.http.post(`${this.uri}`, message);
   }
 
-  deleteMessage(id) {
-    return this.http.delete(`${this.uri}/{id}`);
-  }
 }

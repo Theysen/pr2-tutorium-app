@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import * as util from 'util' // has no default export
-import {inspect} from 'util' // or directly
 
 
 @Injectable({
@@ -9,7 +7,7 @@ import {inspect} from 'util' // or directly
 })
 export class DateService {
 
-  uri: String = 'http://localhost:3000/dates';
+  uri: String = 'http://localhost:4000/dates';
 
   constructor(private http: HttpClient) {
   }
@@ -18,25 +16,28 @@ export class DateService {
     return this.http.get(`${this.uri}`);
   }
 
-  getDateById(id) {
-    return this.http.get(`${this.uri}/${id}`);
-  }
 
-
-  addDate(day, month, year, bookedByGroup, subject) {
+  addDate(day, month, year, slots, possibleSlots, startTime, endTime) {
     const date = {
-      day: day,
-      month: month,
-      year: year,
-      bookedByGroup: bookedByGroup,
-      subject: subject
+      date: [day, month, year],
+      slots: slots,
+      possibleSlots: possibleSlots,
+      startTime: startTime, // needs to be int array
+      endTime: endTime // needs to be int array
     };
-
     return this.http.post(`${this.uri}`, date);
   }
 
-
-  deleteDate(id) {
-  return this.http.delete(`${this.uri}/{id}`);
+  bookSlot(day, month, year, bookedByGroup, startTime, message, roomNumber, verifyId) {
+    const slot = {
+      date: [day, month, year],
+      bookedByGroup: bookedByGroup,
+      startTime: startTime,
+      message: message,
+      roomNumber: roomNumber,
+      verifyId: verifyId
+    };
+    return this.http.put(`${this.uri}`, slot);
   }
+
 }
