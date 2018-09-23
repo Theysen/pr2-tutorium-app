@@ -40,39 +40,24 @@
   </textarea>
           <span matSuffix> {{getSlotString()}}</span>
         </mat-form-field>
-        <mat-form-field appearance="outline" fxFlex="1 1 100%">
-          <mat-select [(value)]="selected" formControlName="group" placeholder="Gruppenname">
-            <mat-option value="A">PR2 - Gruppe A.1</mat-option>
-            <mat-option value="B">PR2 - Gruppe A.2</mat-option>
-            <mat-option value="C">PR2 - Gruppe A.3</mat-option>
-            <mat-option value="A">PR1 - Beratung (max 5 Teilnehmer)</mat-option>
-          </mat-select>
-          <mat-error *ngIf="group.touched && !group.valid">
-            <div *ngIf="group.errors.required">This field is required</div>
-          </mat-error>
-        </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="1 1 100%">
-              <textarea matInput
-                        placeholder="Beschreibt kurz euer Hauptanliegen und mögliche Problemstellungen in diesem Feld"
-                        class="text"
-                        cdkTextareaAutosize cdkAutosizeMinRows="6"
-                        cdkAutosizeMaxRows="15" id="body" name="body" formControlName="msg" (change)="val()"
-                        ng-model="msg2">
-  </textarea>
-          <span matSuffix>{{msg.value.length}}/150</span>
-          <mat-error *ngIf="msg.touched && !msg.valid">
-            <div *ngIf="msg.errors.required">This field is required</div>
-            <div *ngIf="msg.errors.maxLength">The author has to be between 3 and 20
-              characters long
-            </div>
-            <div *ngIf="msg.errors.pattern">You may only use characters and numbers</div>
+          <input matInput placeholder="Slots" formControlName="slots">
 
-          </mat-error>
         </mat-form-field>
+<div id="zeit" fxFlex="1 1 100%" fxLayout="row">
+        <mat-form-field appearance="outline" fxFlex="1 1 50%">
+<input matInput placeholder="Stunde" formControlName="startStunde">
+
+        </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex="1 1 50%">
+    <input matInput placeholder="Minute" formControlName="startMinute">
+
+  </mat-form-field>
+</div>
         <button mat-raised-button color="accent" type="submit" [disabled]="newAppointment.invalid">Termin buchen
         </button>
-        <mat-error *ngIf="!date.valid && (msg.touched || group.touched)">
+        <mat-error *ngIf="!date.valid && (group.touched)">
           Bitte Datum auswählen
         </mat-error>
       </form>

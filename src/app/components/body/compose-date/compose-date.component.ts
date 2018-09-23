@@ -18,19 +18,36 @@ function dateValidator(control: AbstractControl) {
 
 class ServerDate {
   Date: NgbDate;
-  startTime: string;
-  endTime: string;
+  startTime: number[];
+  endTime: number[];
+  appTime: number[];
   possibleSlots: number;
   bookedSlots: number;
 
-  constructor(year: number, month: number, day: number, startTime: string, endTime: string, possibleSlots: number, bookedSlots: number) {
-    this.Date = new NgbDate(year, month, day);
-    this.startTime = startTime;
-    this.endTime = endTime;
+  constructor(year: number, month: number, day: number, startTime: number[],possibleSlots: number, bookedSlots: number) {
     this.possibleSlots = possibleSlots;
     this.bookedSlots = bookedSlots;
-  }
+    this.Date = new NgbDate(year, month, day);
+    this.startTime = [startTime[0].valueOf(),startTime[1].valueOf()];
+    this.endTime =  this.increasedTime([startTime[0].valueOf(),startTime[1].valueOf()],(25*(this.possibleSlots/2)));
+    this.appTime = this.increasedTime([startTime[0].valueOf(),startTime[1].valueOf()],(25*((this.bookedSlots-(this.bookedSlots%2))/2)));
+    console.log(this.startTime);
+    console.log(this.bookedSlots);
+    console.log(this.bookedSlots%2);
+    console.log((25*((this.bookedSlots-(this.bookedSlots%2))/2)))
 
+  }
+  increasedTime(time:number[],minute:number):number[]{
+    if(time[1]+minute>=60){
+      minute -= 60;
+      time[0] += 1;
+      time = this.increasedTime(time,minute);
+    } else{
+      time[1] += minute;
+
+    }
+    return time;
+  }
 }
 
 @Component({
@@ -52,12 +69,14 @@ export class ComposeDateComponent implements OnInit {
     console.log('dates');
     this.dateService.getDates().subscribe((dates: Response) => {
       const generalDates: any = dates;
+      console.log(generalDates);
       for (const data of generalDates) {
         let newData: ServerDate;
-        newData = new ServerDate(data.year, data.month, data.day, data.startTime, data.endTime, data.possibleSlots, data.bookedSlots);
+        newData = new ServerDate(data.date[2], data.date[1], data.date[0], data.startTime,  data.possibleSlots, data.slots.length-8);
         this.allDates.push(newData);
       }
     });
+
     console.log('dates');
 
   }
@@ -130,7 +149,7 @@ export class ComposeDateComponent implements OnInit {
       let out: String;
       out = 'Datum: ' + this.selectedDate.Date.day + '/' + this.selectedDate.Date.month + '/' + this.selectedDate.Date.year
         + ' - Raum: H299' + '\n'
-        + ' zwischen: ' + this.selectedDate.startTime + ' und ' + this.selectedDate.endTime + ' Uhr';
+        + ' zwischen: ' + this.selectedDate.startTime[0] + ':' + this.selectedDate.startTime[1] +' Uhr und ' + this.selectedDate.endTime[0] + ':' + this.selectedDate.endTime[1] +' Uhr';
       return out;
     }
   }
@@ -148,7 +167,13 @@ export class ComposeDateComponent implements OnInit {
       group: ['', [
         Validators.required
       ]],
-      msg: ['', [
+      startStunde: ['', [
+        Validators.required
+      ]],
+      startMinute: ['', [
+        Validators.required
+      ]],
+      slots: ['', [
         Validators.required,
         Validators.pattern('[A-Za-z0-9 .,!?-]*'),
         Validators.maxLength(150),
@@ -173,23 +198,21 @@ export class ComposeDateComponent implements OnInit {
     return this.newAppointment.get('group');
   }
 
-  get msg() {
-    return this.newAppointment.get('msg');
-  }
+
 
   async submitHandler() {
     this.loading = true;
-    try {
-      this.dateService.addDate(
-        this.selectedDate.Date.day, this.selectedDate.Date.month,
-        this.selectedDate.Date.year, this.group.value, this.msg.value).subscribe((message) => {
-        console.log(message);
+    try{
+      let time:number[];
+      this.dateService.bookSlot(this.selectedDate.Date.day,this.selectedDate.Date.month,this.selectedDate.Date.day,this.group.value,this.selectedDate.appTime,this.msg.value,7,202).subscribe((messages) => {
+        console.log(messages);
       });
-      this.success = true;
-    } catch (e) {
-      console.error(e);
+    }catch (e) {
+      console.log(e);
+
     }
     this.loading = false;
+    this.success = true;
   }
 
   reload() {

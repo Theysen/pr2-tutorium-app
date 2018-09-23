@@ -34,7 +34,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {MessageService} from './services/message.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ComposeMessageComponent} from './components/body/compose-message/compose-message.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule,NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {DashboardComponent} from './components/body/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { ComposeDateComponent } from './components/body/compose-date/compose-date.component';
@@ -79,7 +79,11 @@ import { ComposeDateComponent } from './components/body/compose-date/compose-dat
     MatDatepickerModule,
     MatNativeDateModule,
     NgbModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgbTimepickerModule,
+
+
+
 
   ],
   providers: [MessageService],
