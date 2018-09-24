@@ -15,7 +15,7 @@ const config = require('./configuration/config');
 const User = require('./models/User');
 const Message = require('./models/Message');
 const Date = require('./models/Date');
-const Slot = require('./models/Date');
+const Index = require('./models/SlotIndex');
 
 // Init express app
 const app = express();
@@ -114,6 +114,8 @@ app.put('/dates', (req, res) => {
         error: err
       });
     } else {
+      Index.findOneAndUpdate({_id: "5ba9154b36fb930b5409f1dd"}, {$inc: {index: 1}}, {new: true}, (err, index) => {
+      });
       res.status(200).json({
         message: 'Successfully booked',
         slot: slot
@@ -140,6 +142,37 @@ app.get('/dates', (req, res) => {
     });
 });
 
+// Slot index - get
+app.get('/slots', (req, res) => {
+
+  Index.find()
+    .exec()
+    .then(result => {
+      if (result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).json({
+          message: 'No valid entry found'
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({error: err});
+    });
+});
+
+app.post('/slots', (req, res) => {
+  const index = new Index({
+    index: 0
+  });
+  index.save()
+    .then(doc => {
+      res.json(doc);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
 
 // Login - Authorization and Token acquisation
 app.post('/login', (req, res) => {
@@ -168,8 +201,8 @@ function verifyToken(req, res, next) {
     // Forbidden
     res.sendStatus(403);
   }
-
 }
+
 
 // Start ServerApp
 
