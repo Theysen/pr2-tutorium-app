@@ -74,7 +74,7 @@ export class CalendarComponent implements OnInit {
       console.log(generalDates);
       for (const data of generalDates) {
         let newData: ServerDate;
-        newData = new ServerDate(data.date[2], data.date[1], data.date[0], data.startTime,  data.possibleSlots, data.slots.length-8);
+        newData = new ServerDate(data.date[2], data.date[1], data.date[0], data.startTime,  data.possibleSlots, data.slots.length);
         this.allDates.push(newData);
       }
     });

@@ -38,6 +38,7 @@ import {NgbModule,NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {DashboardComponent} from './components/body/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { ComposeDateComponent } from './components/body/compose-date/compose-date.component';
+import { ValidateSlotComponent } from './components/body/validate-slot/validate-slot.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ComposeDateComponent } from './components/body/compose-date/compose-dat
     ComposeMessageComponent,
     DashboardComponent,
     LoginComponent,
-    ComposeDateComponent
+    ComposeDateComponent,
+    ValidateSlotComponent
   ],
   imports: [
     BrowserModule,

@@ -72,7 +72,7 @@ export class ComposeDateComponent implements OnInit {
       console.log(generalDates);
       for (const data of generalDates) {
         let newData: ServerDate;
-        newData = new ServerDate(data.date[2], data.date[1], data.date[0], data.startTime,  data.possibleSlots, data.slots.length-8);
+        newData = new ServerDate(data.date[2], data.date[1], data.date[0], data.startTime,  data.possibleSlots, data.slots.length);
         this.allDates.push(newData);
       }
     });
@@ -88,6 +88,8 @@ export class ComposeDateComponent implements OnInit {
         dateIsValid = true;
         this.selectedDate = date;
         console.log(dateIsValid);
+        console.log(this.newAppointment);
+        this.val();
       }
     }
     return false;
@@ -146,7 +148,7 @@ export class ComposeDateComponent implements OnInit {
       return null;
     } else {
       let out: String;
-      out = 'Datum: ' + this.selectedDate.year + '/' + this.selectedDate.month + '/' + this.selectedDate.year
+      out = 'Datum: ' + this.selectedDate.day + '/' + this.selectedDate.month + '/' + this.selectedDate.year
       return out;
     }
   }
@@ -168,7 +170,7 @@ export class ComposeDateComponent implements OnInit {
         Validators.required
       ]],
       slots: ['', [
-        Validators.required,
+        Validators.required
       ]]
     });
     this.newAppointment.valueChanges.subscribe(console.log);
@@ -185,10 +187,16 @@ export class ComposeDateComponent implements OnInit {
   get date() {
     return this.newAppointment.get('date');
   }
-
-  get group() {
-    return this.newAppointment.get('group');
+  get slots() {
+    return this.newAppointment.get('slots');
   }
+  get stunde() {
+    return this.newAppointment.get('startStunde');
+  }
+  get minute(){
+    return this.newAppointment.get('startMinute');
+  }
+
 
 
 
@@ -196,7 +204,7 @@ export class ComposeDateComponent implements OnInit {
     this.loading = true;
     try{
       let time:number[];
-      this.dateService.bookSlot(this.selectedDate.day,this.selectedDate.month,this.selectedDate.day,this.group.value,'1','hi',7,202).subscribe((messages) => {
+      this.dateService.addDate(this.selectedDate.day,this.selectedDate.month,this.selectedDate.year, [], this.slots.value, [this.stunde.value,this.minute.value],[this.stunde.value,this.minute.value] ).subscribe((messages) => {
         console.log(messages);
       });
     }catch (e) {

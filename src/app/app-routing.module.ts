@@ -4,6 +4,7 @@ import {ComposeMessageComponent} from './components/body/compose-message/compose
 import {DashboardComponent} from './components/body/dashboard/dashboard.component';
 import {LoginComponent} from "./components/login/login.component";
 import {ComposeDateComponent} from "./components/body/compose-date/compose-date.component";
+import {ValidateSlotComponent} from "./components/body/validate-slot/validate-slot.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'newMessage', component: ComposeMessageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'newDate', component: ComposeDateComponent},
+  {path: 'idPruefen', component: ValidateSlotComponent}
 ];
 
 @NgModule({
