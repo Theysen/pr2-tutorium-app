@@ -1,0 +1,14 @@
+<mat-card class="mat-elevation-z6">
+  <mat-card-header></mat-card-header>
+  <form [formGroup]="searchSlot" [hidden]="sucess" (ngSubmit)="submitHandler()">
+    <mat-card-content fxLayoutAlign="column">
+      <mat-form-field appearance="outline" fxFlex="1 1 100%">
+        <input matInput placeholder="ID"  formControlName="slotID">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions class="drunter2">
+      <button mat-raised-button [disabled]="searchSlot.invalid" color="accent" type="submit">Send</button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>

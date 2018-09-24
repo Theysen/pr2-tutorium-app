@@ -1,0 +1,23 @@
+.messages {
+  magin: 1rem;
+}
+.mat-elevation-z6{
+  margin: 1rem;
+}
+
+.drunter{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+
+}
+.drunter2{
+
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 2rem;
+
+}
+
+
