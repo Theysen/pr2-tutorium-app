@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MessageService} from "../../../services/message.service";
 import {DateService} from "../../../services/date.service";
 
 @Component({
@@ -29,12 +28,12 @@ export class ValidateSlotComponent implements OnInit {
 
   async submitHandler() {
     this.loading = true;
-
+    let out: string = '';
 
     try {
       this.dateService.getDates().subscribe((dates) => {
         let sth : any = dates;
-        let out: string = '';
+
         for(let dat of sth){
           for(let slot of dat.slots){
             let s2 = ''+slot.verifyId;

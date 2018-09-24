@@ -15,6 +15,7 @@ const config = require('./configuration/config');
 const User = require('./models/User');
 const Message = require('./models/Message');
 const Date = require('./models/Date');
+const Slot = require('./models/Date');
 
 // Init express app
 const app = express();
@@ -74,16 +75,18 @@ app.post('/messages', (req, res) => {
 });
 
 app.post('/dates', (req, res) => {
+
+  console.log(req.body);
+
   const date = new Date({
     date: req.body.date,
-    slots: req.body.slots,
     possibleSlots: req.body.possibleSlots,
     startTime: req.body.startTime,
     endTime: req.body.endTime
   });
   date.save()
     .then(
-      res.status(201).json({
+      res.status(200).json({
         createdDate: date
       })
     )
@@ -97,13 +100,18 @@ app.post('/dates', (req, res) => {
 // Dates - book slot by date
 app.put('/dates', (req, res) => {
 
-  const slot = {
+  console.log('HIER:' + req.body.slot);
+
+  const slot = ({
     bookedByGroup: req.body.bookedByGroup,
     startTime: req.body.startTime,
     message: req.body.message,
     roomNumber: req.body.roomNumber,
     verifyId: req.body.verifyId
-  };
+  });
+
+  console.log(req.body.date);
+  console.log(slot);
 
   Date.findOneAndUpdate(req.body.date, {$push: {slots: slot}}, {new: true}, (err, slots) => {
     if (err) {

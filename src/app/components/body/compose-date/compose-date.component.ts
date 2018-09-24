@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbDate, NgbCalendar, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import {NgbCalendar, NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import {DateService} from '../../../services/date.service';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {MessageService} from '../../../services/message.service';
-import {group} from '@angular/animations';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 let dateIsValid = false;
 
@@ -24,25 +22,26 @@ class ServerDate {
   possibleSlots: number;
   bookedSlots: number;
 
-  constructor(year: number, month: number, day: number, startTime: number[],possibleSlots: number, bookedSlots: number) {
+  constructor(year: number, month: number, day: number, startTime: number[], possibleSlots: number, bookedSlots: number) {
     this.possibleSlots = possibleSlots;
     this.bookedSlots = bookedSlots;
     this.Date = new NgbDate(year, month, day);
-    this.startTime = [startTime[0].valueOf(),startTime[1].valueOf()];
-    this.endTime =  this.increasedTime([startTime[0].valueOf(),startTime[1].valueOf()],(25*(this.possibleSlots/2)));
-    this.appTime = this.increasedTime([startTime[0].valueOf(),startTime[1].valueOf()],(25*((this.bookedSlots-(this.bookedSlots%2))/2)));
+    this.startTime = [startTime[0].valueOf(), startTime[1].valueOf()];
+    this.endTime = this.increasedTime([startTime[0].valueOf(), startTime[1].valueOf()], (25 * (this.possibleSlots / 2)));
+    this.appTime = this.increasedTime([startTime[0].valueOf(), startTime[1].valueOf()], (25 * ((this.bookedSlots - (this.bookedSlots % 2)) / 2)));
     console.log(this.startTime);
     console.log(this.bookedSlots);
-    console.log(this.bookedSlots%2);
-    console.log((25*((this.bookedSlots-(this.bookedSlots%2))/2)))
+    console.log(this.bookedSlots % 2);
+    console.log((25 * ((this.bookedSlots - (this.bookedSlots % 2)) / 2)))
 
   }
-  increasedTime(time:number[],minute:number):number[]{
-    if(time[1]+minute>=60){
+
+  increasedTime(time: number[], minute: number): number[] {
+    if (time[1] + minute >= 60) {
       minute -= 60;
       time[0] += 1;
-      time = this.increasedTime(time,minute);
-    } else{
+      time = this.increasedTime(time, minute);
+    } else {
       time[1] += minute;
 
     }
@@ -72,7 +71,7 @@ export class ComposeDateComponent implements OnInit {
       console.log(generalDates);
       for (const data of generalDates) {
         let newData: ServerDate;
-        newData = new ServerDate(data.date[2], data.date[1], data.date[0], data.startTime,  data.possibleSlots, data.slots.length);
+        newData = new ServerDate(data.date[2], data.date[1], data.date[0], data.startTime, data.possibleSlots, data.slots.length);
         this.allDates.push(newData);
       }
     });
@@ -81,18 +80,8 @@ export class ComposeDateComponent implements OnInit {
 
   }
 
-  onDateSelection(date: NgbDate) {
-    for (const dat of this.allDates) {
-      if (date.equals(dat.Date)) {
-      }else {
-        dateIsValid = true;
-        this.selectedDate = date;
-        console.log(dateIsValid);
-        console.log(this.newAppointment);
-        this.val();
-      }
-    }
-    return false;
+  get minute() {
+    return this.newAppointment.get('startMinute');
   }
 
   isSelected(date: NgbDate) {
@@ -143,14 +132,16 @@ export class ComposeDateComponent implements OnInit {
     return false;
   }
 
-  getSelectedDateToString() {
-    if (this.selectedDate == null) {
-      return null;
-    } else {
-      let out: String;
-      out = 'Datum: ' + this.selectedDate.day + '/' + this.selectedDate.month + '/' + this.selectedDate.year
-      return out;
-    }
+  onDateSelection(date: NgbDate) {
+
+    dateIsValid = true;
+    this.selectedDate = date;
+    console.log(dateIsValid);
+    console.log(this.newAppointment);
+    this.val();
+
+
+    return false;
   }
 
   val() {
@@ -187,27 +178,34 @@ export class ComposeDateComponent implements OnInit {
   get date() {
     return this.newAppointment.get('date');
   }
+
   get slots() {
     return this.newAppointment.get('slots');
   }
+
   get stunde() {
     return this.newAppointment.get('startStunde');
   }
-  get minute(){
-    return this.newAppointment.get('startMinute');
+
+  getSelectedDateToString() {
+    if (this.selectedDate == null) {
+      return null;
+    } else {
+      let out: String;
+      out = 'Datum: ' + this.selectedDate.day + '/' + this.selectedDate.month + '/' + this.selectedDate.year;
+      return out;
+    }
   }
-
-
-
 
   async submitHandler() {
     this.loading = true;
-    try{
-      let time:number[];
-      this.dateService.addDate(this.selectedDate.day,this.selectedDate.month,this.selectedDate.year, [], this.slots.value, [this.stunde.value,this.minute.value],[this.stunde.value,this.minute.value] ).subscribe((messages) => {
+    try {
+      let time: number[];
+      this.dateService.addDate(this.selectedDate.day, this.selectedDate.month, this.selectedDate.year, this.slots.value,
+        [this.stunde.value, this.minute.value]).subscribe((messages) => {
         console.log(messages);
       });
-    }catch (e) {
+    } catch (e) {
       console.log(e);
 
     }

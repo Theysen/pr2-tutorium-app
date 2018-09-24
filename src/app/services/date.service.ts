@@ -17,13 +17,11 @@ export class DateService {
   }
 
 
-  addDate(day, month, year, slots, possibleSlots, startTime, endTime) {
+  addDate(day, month, year, possibleSlots, startTime) {
     const date = {
       date: [day, month, year],
-      slots: slots,
       possibleSlots: possibleSlots,
       startTime: startTime, // needs to be int array
-      endTime: endTime // needs to be int array
     };
     return this.http.post(`${this.uri}`, date);
   }
