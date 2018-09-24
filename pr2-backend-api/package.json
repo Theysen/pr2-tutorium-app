@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app"
   },
   "author": "Lukas Theisen",
   "license": "MIT",
@@ -18,5 +18,8 @@
   },
   "devDependencies": {
     "@types/express": "^4.16.0"
+  },
+  "engines": {
+    "node": "8.12"
   }
 }

@@ -22,7 +22,7 @@ const app = express();
 
 // Connect to MongoDB
 mongoose.connect(config.database,
-  {useNewUrlParser: true})
+  { useNewUrlParser: true })
   .then(console.log('Successfully connected to the database.'));
 
 // Middleware setup
@@ -30,7 +30,7 @@ mongoose.connect(config.database,
 app.use(cors());
 
 // BodyParser setup
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Routes
@@ -43,11 +43,11 @@ app.get('/messages', (req, res) => {
       if (result) {
         res.status(200).json(result);
       } else {
-        res.status(404).json({message: "Entries unavailable"});
+        res.status(404).json({ message: "Entries unavailable" });
       }
     })
     .catch(err => {
-      res.status(500).json({error: err});
+      res.status(500).json({ error: err });
     })
 });
 
@@ -76,13 +76,10 @@ app.post('/messages', (req, res) => {
 
 app.post('/dates', (req, res) => {
 
-  console.log(req.body);
-
   const date = new Date({
     date: req.body.date,
     possibleSlots: req.body.possibleSlots,
     startTime: req.body.startTime,
-    endTime: req.body.endTime
   });
   date.save()
     .then(
@@ -100,7 +97,7 @@ app.post('/dates', (req, res) => {
 // Dates - book slot by date
 app.put('/dates', (req, res) => {
 
-  console.log('HIER:' + req.body.slot);
+  console.log('HIER:' + req.body);
 
   const slot = ({
     bookedByGroup: req.body.bookedByGroup,
@@ -110,10 +107,7 @@ app.put('/dates', (req, res) => {
     verifyId: req.body.verifyId
   });
 
-  console.log(req.body.date);
-  console.log(slot);
-
-  Date.findOneAndUpdate(req.body.date, {$push: {slots: slot}}, {new: true}, (err, slots) => {
+  Date.findOneAndUpdate(req.body.date, { $push: { 'slots': slot } }, { new: true }, (err, slots) => {
     if (err) {
       res.status(404).json({
         message: 'Date not found',
@@ -142,14 +136,14 @@ app.get('/dates', (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).json({error: err});
+      res.status(500).json({ error: err });
     });
 });
 
 
 // Login - Authorization and Token acquisation
 app.post('/login', (req, res) => {
-  jwt.sign({user}, config.secret, {expiresIn: '6000s'}, (err, token) => {
+  jwt.sign({ user }, config.secret, { expiresIn: '6000s' }, (err, token) => {
     res.json({
       token
     });
@@ -178,7 +172,10 @@ function verifyToken(req, res, next) {
 }
 
 // Start ServerApp
-app.listen(config.port, () => {
+
+const port = process.env.PORT || config.port;
+
+app.listen(port, () => {
   console.log('Server listening and running on port ' + config.port);
 });
 

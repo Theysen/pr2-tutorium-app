@@ -1,12 +1,15 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  uri: String = 'http://localhost:4000/messages';
+  // Production
+  uri: String = ' https://arcane-hamlet-34988.herokuapp.com/messages';
+  // Development Server Adress 
+  // uri: String = 'http://localhost/4000/messages';
 
   constructor(private http: HttpClient) {
   }

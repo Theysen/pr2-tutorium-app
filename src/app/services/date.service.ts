@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
 
 @Injectable({
@@ -7,7 +7,11 @@ import {HttpClient} from "@angular/common/http";
 })
 export class DateService {
 
-  uri: String = 'http://localhost:4000/dates';
+
+  // Production
+  uri: String = 'https://arcane-hamlet-34988.herokuapp.com/dates';
+  // Development Server Adress 
+  // uri: String = 'http://localhost/4000/dates';
 
   constructor(private http: HttpClient) {
   }

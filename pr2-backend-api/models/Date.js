@@ -1,26 +1,21 @@
 const mongoose = require('mongoose');
 
-const slotSchema = mongoose.Schema({
-  bookedByGroup: String,
-  startTime: [Number],
-  message: String,
-  roomNumber: String,
-  verifyId: Number
-});
-
-
 const dateSchema = mongoose.Schema({
   date: {
     type: [Number],
     required: true
   },
   slots: {
-    type: [slotSchema]
+    type: [{
+      bookedByGroup: String,
+      startTime: [Number],
+      message: String,
+      roomNumber: String,
+      verifyId: Number
+    }],
+    required: false
   },
-  possibleSlots: {
-    type: Number,
-    max: 6
-  },
+  possibleSlots: Number,
   startTime: [Number]
 
 });
