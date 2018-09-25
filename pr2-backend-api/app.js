@@ -97,8 +97,6 @@ app.post('/dates', (req, res) => {
 // Dates - book slot by date
 app.put('/dates', (req, res) => {
 
-  console.log('HIER:' + req.body);
-
   const slot = ({
     bookedByGroup: req.body.bookedByGroup,
     startTime: req.body.startTime,
@@ -114,7 +112,7 @@ app.put('/dates', (req, res) => {
         error: err
       });
     } else {
-      Index.findOneAndUpdate({_id: "5ba9154b36fb930b5409f1dd"}, {$inc: {index: 1}}, {new: true}, (err, index) => {
+      Index.findOneAndUpdate({ _id: "5ba9154b36fb930b5409f1dd" }, { $inc: { index: 1 } }, { new: true }, (err, index) => {
       });
       res.status(200).json({
         message: 'Successfully booked',
@@ -157,20 +155,7 @@ app.get('/slots', (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).json({error: err});
-    });
-});
-
-app.post('/slots', (req, res) => {
-  const index = new Index({
-    index: 0
-  });
-  index.save()
-    .then(doc => {
-      res.json(doc);
-    })
-    .catch(err => {
-      res.json(err);
+      res.status(500).json({ error: err });
     });
 });
 
