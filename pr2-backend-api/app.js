@@ -22,7 +22,7 @@ const app = express();
 
 // Connect to MongoDB
 mongoose.connect(config.database,
-  { useNewUrlParser: true })
+  {useNewUrlParser: true})
   .then(console.log('Successfully connected to the database.'));
 
 // Middleware setup
@@ -30,7 +30,7 @@ mongoose.connect(config.database,
 app.use(cors());
 
 // BodyParser setup
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // Routes
@@ -43,11 +43,11 @@ app.get('/messages', (req, res) => {
       if (result) {
         res.status(200).json(result);
       } else {
-        res.status(404).json({ message: "Entries unavailable" });
+        res.status(404).json({message: "Entries unavailable"});
       }
     })
     .catch(err => {
-      res.status(500).json({ error: err });
+      res.status(500).json({error: err});
     })
 });
 
@@ -57,7 +57,7 @@ app.post('/messages', (req, res) => {
     _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
     author: req.body.author,
-    body: req.body.body
+    content: req.body.content
   });
   message
     .save()
@@ -105,14 +105,14 @@ app.put('/dates', (req, res) => {
     verifyId: req.body.verifyId
   });
 
-  Date.findOneAndUpdate(req.body.date, { $push: { 'slots': slot } }, { new: true }, (err, slots) => {
+  Date.findOneAndUpdate({'date': req.body.date}, {$push: {'slots': slot}}, {new: true}, (err, slots) => {
     if (err) {
       res.status(404).json({
         message: 'Date not found',
         error: err
       });
     } else {
-      Index.findOneAndUpdate({ _id: "5ba9154b36fb930b5409f1dd" }, { $inc: { index: 1 } }, { new: true }, (err, index) => {
+      Index.findOneAndUpdate({_id: "5ba9154b36fb930b5409f1dd"}, {$inc: {index: 1}}, {new: true}, (err, index) => {
       });
       res.status(200).json({
         message: 'Successfully booked',
@@ -136,7 +136,7 @@ app.get('/dates', (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).json({ error: err });
+      res.status(500).json({error: err});
     });
 });
 
@@ -155,13 +155,13 @@ app.get('/slots', (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).json({ error: err });
+      res.status(500).json({error: err});
     });
 });
 
 // Login - Authorization and Token acquisation
 app.post('/login', (req, res) => {
-  jwt.sign({ user }, config.secret, { expiresIn: '6000s' }, (err, token) => {
+  jwt.sign({user}, config.secret, {expiresIn: '6000s'}, (err, token) => {
     res.json({
       token
     });

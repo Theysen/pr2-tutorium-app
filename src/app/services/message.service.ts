@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +7,9 @@ import { HttpClient } from "@angular/common/http";
 export class MessageService {
 
   // Production
-  uri: String = ' https://arcane-hamlet-34988.herokuapp.com/messages';
+  // uri: String = ' https://arcane-hamlet-34988.herokuapp.com/messages';
   // Development Server Adress 
-  // uri: String = 'http://localhost/4000/messages';
+  uri: String = 'http://localhost:4000/messages';
 
   constructor(private http: HttpClient) {
   }
@@ -19,11 +19,11 @@ export class MessageService {
   }
 
 
-  addMessage(author, title, body) {
+  addMessage(author, title, content) {
     const message = {
       title: title,
       author: author,
-      body: body,
+      content: content,
       date: Date.now()
     };
 

@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbDate, NgbCalendar, NgbDatepickerConfig, NgbTimepicker, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
+import {NgbCalendar, NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import {DateService} from '../../../../services/date.service';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {MessageService} from '../../../../services/message.service';
-import {group} from '@angular/animations';
-import {Time} from "@angular/common";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {SlotService} from "../../../../services/slot.service";
 
 
 let dateIsValid = false;
@@ -26,25 +24,26 @@ class ServerDate {
   possibleSlots: number;
   bookedSlots: number;
 
-  constructor(year: number, month: number, day: number, startTime: number[],possibleSlots: number, bookedSlots: number) {
+  constructor(year: number, month: number, day: number, startTime: number[], possibleSlots: number, bookedSlots: number) {
     this.possibleSlots = possibleSlots;
     this.bookedSlots = bookedSlots;
     this.Date = new NgbDate(year, month, day);
-    this.startTime = [startTime[0].valueOf(),startTime[1].valueOf()];
-    this.endTime =  this.increasedTime([startTime[0].valueOf(),startTime[1].valueOf()],(25*(this.possibleSlots/2)));
-    this.appTime = this.increasedTime([startTime[0].valueOf(),startTime[1].valueOf()],(25*((this.bookedSlots-(this.bookedSlots%2))/2)));
+    this.startTime = [startTime[0].valueOf(), startTime[1].valueOf()];
+    this.endTime = this.increasedTime([startTime[0].valueOf(), startTime[1].valueOf()], (25 * (this.possibleSlots / 2)));
+    this.appTime = this.increasedTime([startTime[0].valueOf(), startTime[1].valueOf()], (25 * ((this.bookedSlots - (this.bookedSlots % 2)) / 2)));
     console.log(this.startTime);
     console.log(this.bookedSlots);
-    console.log(this.bookedSlots%2);
-    console.log((25*((this.bookedSlots-(this.bookedSlots%2))/2)))
+    console.log(this.bookedSlots % 2);
+    console.log((25 * ((this.bookedSlots - (this.bookedSlots % 2)) / 2)))
 
   }
-  increasedTime(time:number[],minute:number):number[]{
-    if(time[1]+minute>=60){
+
+  increasedTime(time: number[], minute: number): number[] {
+    if (time[1] + minute >= 60) {
       minute -= 60;
       time[0] += 1;
-      time = this.increasedTime(time,minute);
-    } else{
+      time = this.increasedTime(time, minute);
+    } else {
       time[1] += minute;
 
     }
@@ -64,8 +63,9 @@ export class CalendarComponent implements OnInit {
   newAppointment: FormGroup;
   loading = false;
   success = false;
+  slotId: any;
 
-  constructor(private calendar: NgbCalendar, private dateService: DateService, private fb: FormBuilder) {
+  constructor(private calendar: NgbCalendar, private slotService: SlotService, private dateService: DateService, private fb: FormBuilder) {
 
     this.allDates = [];
     console.log('dates');
@@ -74,7 +74,7 @@ export class CalendarComponent implements OnInit {
       console.log(generalDates);
       for (const data of generalDates) {
         let newData: ServerDate;
-        newData = new ServerDate(data.date[2], data.date[1], data.date[0], data.startTime,  data.possibleSlots, data.slots.length);
+        newData = new ServerDate(data.date[2], data.date[1], data.date[0], data.startTime, data.possibleSlots, data.slots.length);
         this.allDates.push(newData);
       }
     });
@@ -145,13 +145,24 @@ export class CalendarComponent implements OnInit {
   }
 
   getSelectedDateToString() {
+
+
     if (this.selectedDate == null) {
       return null;
     } else {
+
+      let raumnummer = '';
+      if (this.calendar.getWeekday(this.selectedDate.Date) === 1 || this.calendar.getWeekday(this.selectedDate.Date) === 5) {
+        raumnummer = 'H1114';
+      }
+      if (this.calendar.getWeekday(this.selectedDate.Date) === 3) {
+        raumnummer = 'H1008';
+      }
+
       let out: String;
       out = 'Datum: ' + this.selectedDate.Date.day + '/' + this.selectedDate.Date.month + '/' + this.selectedDate.Date.year
-      + ' - Raum: H299' + '\n'
-      + ' zwischen: ' + this.selectedDate.startTime[0] + ':' + this.selectedDate.startTime[1] +' Uhr und ' + this.selectedDate.endTime[0] + ':' + this.selectedDate.endTime[1] +' Uhr';
+        + ' - Raum: ' + raumnummer + '\n'
+        + ' Uhrzeit: ' + this.selectedDate.appTime[0] + ':' + this.selectedDate.appTime[1];
       return out;
     }
   }
@@ -200,16 +211,34 @@ export class CalendarComponent implements OnInit {
 
 
   async submitHandler() {
-    this.loading = true;
-    try{
-      let time:number[];
-      this.dateService.bookSlot(this.selectedDate.Date.day,this.selectedDate.Date.month,this.selectedDate.Date.day,this.group.value,this.selectedDate.appTime,this.msg.value,7,202).subscribe((messages) => {
-        console.log(messages);
-      });
-    }catch (e) {
-      console.log(e);
 
+    let raumnummer = '';
+    if (this.calendar.getWeekday(this.selectedDate.Date) === 1 || this.calendar.getWeekday(this.selectedDate.Date) === 5) {
+      raumnummer = 'H1114';
     }
+    if (this.calendar.getWeekday(this.selectedDate.Date) === 3) {
+      raumnummer = 'H1008';
+    }
+
+
+    this.loading = true;
+
+    this.slotService.getIndex().subscribe(slotId => {
+      this.slotId = slotId[0].index;
+
+      try {
+        let time: number[];
+        this.dateService.bookSlot(this.selectedDate.Date.day, this.selectedDate.Date.month, this.selectedDate.Date.year, this.group.value, this.selectedDate.appTime, this.msg.value, raumnummer, this.slotId).subscribe((messages) => {
+          console.log(messages);
+        });
+      } catch (e) {
+        console.log(e);
+
+      }
+
+    });
+
+
     this.loading = false;
     this.success = true;
   }

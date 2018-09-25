@@ -4,8 +4,8 @@
   <mat-card-content fxLayout="column">
     <div fxFlex="1 1 100%">
       <p>
-        - Wählt einen freien Termin aus (blau)<br>
-        - Füllt die restlichen Felder sinnvoll aus<br>
+        - Wählt einen freien Termin aus (Grün oder Gelb)<br>
+        - Füllt die restlichen Felder warheitsgemäß aus<br>
         - Nehmt den Termin ernsthaft wahr<br>
         - Profit :)
       </p>
@@ -42,10 +42,13 @@
         </mat-form-field>
         <mat-form-field appearance="outline" fxFlex="1 1 100%">
           <mat-select [(value)]="selected" formControlName="group" placeholder="Gruppenname">
-            <mat-option value="A">PR2 - Gruppe A.1</mat-option>
-            <mat-option value="B">PR2 - Gruppe A.2</mat-option>
-            <mat-option value="C">PR2 - Gruppe A.3</mat-option>
-            <mat-option value="A">PR1 - Beratung (max 5 Teilnehmer)</mat-option>
+            <mat-option value="Gruppe A-1">PR2 - Gruppe A-1</mat-option>
+            <mat-option value="Gruppe A-2">PR2 - Gruppe A-2</mat-option>
+            <mat-option value="Gruppe A-3">PR2 - Gruppe A-3</mat-option>
+            <mat-option value="Gruppe A-4">PR2 - Gruppe A-4</mat-option>
+            <mat-option value="Gruppe A-5">PR2 - Gruppe A-5</mat-option>
+            <mat-option value="Gruppe A-6">PR2 - Gruppe A-6</mat-option>
+            <mat-option value="PR1-Beratung">PR1 - Beratung (max 5 Teilnehmer)</mat-option>
           </mat-select>
           <mat-error *ngIf="group.touched && !group.valid">
             <div *ngIf="group.errors.required">This field is required</div>
@@ -84,10 +87,10 @@
   <mat-card-title>Termin gebucht!</mat-card-title>
   <mat-card-subtitle>Zusammenfassung zur Erinnerung:</mat-card-subtitle>
   <mat-card-content fxLayout="column">
-    <span fxFlex="1 1 100%"> date : {{getSelectedDateToString()}}</span>
-    <span fxFlex="1 1 100%"> group : {{group.value}}</span>
-    <span fxFlex="1 1 100%"> subject : {{msg.value}}</span>
-    <span fxFlex="1 1 100%"> id: 202 </span>
+    <span fxFlex="1 1 100%"> Datum : {{getSelectedDateToString()}}</span>
+    <span fxFlex="1 1 100%"> Gruppe : {{group.value}}</span>
+    <span fxFlex="1 1 100%"> Thema : {{msg.value}}</span>
+    <span fxFlex="1 1 100%"> ID: {{slotId}} </span>
     <br>
     <button mat-raised-button color="accent" fxFlex="1 1 100%" routerLinkActive="active" routerLink="/dashboard"
             (click)="reload()">Verstanden!

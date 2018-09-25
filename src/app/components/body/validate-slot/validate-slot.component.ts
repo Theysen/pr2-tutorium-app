@@ -9,20 +9,39 @@ import {DateService} from "../../../services/date.service";
 })
 export class ValidateSlotComponent implements OnInit {
   searchSlot: FormGroup;
+  slot: any;
   loading = false;
   sucess = false;
-  constructor(private fb: FormBuilder, private dateService: DateService) { }
+  error = false;
+
+  constructor(private fb: FormBuilder, private dateService: DateService) {
+  }
+
   ngOnInit() {
+
     this.searchSlot = this.fb.group({
       slotID: ['', [
         Validators.required,
         Validators.pattern('[0-9]*'),
       ]]
- });
+    });
 
   }
+
   get slotID() {
     return this.searchSlot.get('slotID');
+  }
+
+  getSlotInformation(): string {
+    let out: string;
+    out = '';
+    if (this.slot != undefined) {
+
+      out += 'Dieser Slot wurde gebucht von: ' + this.slot.bookedByGroup + ' - ' +
+        'Datum:' + this.slot.date[0] + '/' + this.slot.date[1] + '/' + this.slot.date[2] + ' - Uhrzeit:' + this.slot.startTime[0] + ':' + this.slot.startTime[1] + 'Uhr' + ' - ' +
+        'Raum: ' + this.slot.roomNumber;
+    }
+    return out;
   }
 
 
@@ -32,23 +51,44 @@ export class ValidateSlotComponent implements OnInit {
 
     try {
       this.dateService.getDates().subscribe((dates) => {
-        let sth : any = dates;
+        let sth: any = dates;
+        let found = false;
 
-        for(let dat of sth){
-          for(let slot of dat.slots){
-            let s2 = ''+slot.verifyId;
-            console.log(s2);
-            if(this.slotID.value === s2){
+        for (let dat of sth) {
+
+
+          let sth2: any = dat.date;
+
+
+          for (let slot of dat.slots) {
+            let s2 = '' + slot.verifyId;
+
+            if (this.slotID.value === s2) {
+              found = true;
               out += slot.msg + ' ';
-              console.log(slot);
+              this.slot = slot;
+              this.slot.date = sth2;
+
             }
           }
         }
+        if (found) {
+          this.sucess = true;
+        }
+        else {
+          this.error = true;
+        }
       });
-      console.log(out);
+
     } catch (e) {
       console.error(e);
     }
     this.loading = false;
   }
+
+  reload() {
+    location.reload();
+  }
+
+
 }

@@ -1,9 +1,9 @@
-<mat-card class="mat-elevation-z6">
-  <mat-card-header></mat-card-header>
+<mat-card class="mat-elevation-z6" *ngIf="!error && !sucess">
+  <mat-card-title>Termin prüfen</mat-card-title>
   <form [formGroup]="searchSlot" [hidden]="sucess" (ngSubmit)="submitHandler()">
     <mat-card-content fxLayoutAlign="column">
       <mat-form-field appearance="outline" fxFlex="1 1 100%">
-        <input matInput placeholder="ID"  formControlName="slotID">
+        <input matInput placeholder="hier ID eintragen" formControlName="slotID">
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions class="drunter2">
@@ -11,4 +11,34 @@
     </mat-card-actions>
 
   </form>
+</mat-card>
+
+<mat-card class="mat-elevation-z6" *ngIf="sucess">
+  <mat-card-title>Termin:</mat-card-title>
+
+  <mat-card-content appearance="outline" fxLayoutAlign="column"><span fxFlex="1 1 100%" fxLayoutAlign="center center"> {{getSlotInformation()}}</span>
+
+  </mat-card-content>
+  <mat-card-actions class="drunter2">
+    <button mat-raised-button color="accent" fxFlex="1 1 100%" routerLinkActive="active" routerLink="/dashboard"
+            (click)="reload()">Verstanden!
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card class="mat-elevation-z6" *ngIf="error">
+  <mat-card-title class="error">Error:</mat-card-title>
+
+  <mat-card-content class="error" colour="primary" fxLayoutAlign="row"><span fxFlex="1 1 100%"
+                                                                             fxLayoutAlign="center center">
+    Dieser Termin wurde leider nicht gefunden. :(<br>
+    - Prüfe die eingegebene ID erneut! -<br>
+    Sollten weiterhin Komplikationen auftreten, kontaktiere die Tutoren.
+    </span>
+  </mat-card-content>
+  <mat-card-actions class="drunter2">
+    <button mat-raised-button color="accent" fxFlex="1 1 100%" routerLinkActive="active" routerLink="/dashboard"
+            (click)="reload()">Verstanden!
+    </button>
+  </mat-card-actions>
 </mat-card>
