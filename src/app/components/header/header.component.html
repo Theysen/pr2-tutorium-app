@@ -6,7 +6,7 @@
     </button>
   </span>
   <span fxFlex="1 1 auto" fxFill></span>
-  <span fxFlex="1 1 auto" class="head-component">
+  <span fxFlex="1 1 auto" class="head-component" fxHide.lt-sm="true">
     <div>
       <nav>
         <button mat-flat-button color="primary" class="buttons" routerLinkActive="active" routerLink="/idPruefen">
@@ -24,7 +24,19 @@
       </nav>
     </div>
   </span>
+
+  <span fxFlex="1 1 auto" class="head-component" fxHide.gt-xs="true">
+    <div>
+      <nav>
+                <button mat-flat-button color="primary" class="buttons" routerLinkActive="active">
+          <mat-icon (click)="toggle()">home</mat-icon>
+        </button>
+      </nav>
+    </div>
+  </span>
+
 </mat-toolbar>
+
 
 
 

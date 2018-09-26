@@ -1,4 +1,5 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
+import {AppComponent} from "../../app.component";
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,10 @@ import {Component, OnChanges, OnInit} from '@angular/core';
 export class HeaderComponent {
 
 
-  constructor() {
+  constructor(private main:AppComponent) {
+  }
+  toggle(){
+    this.main.toggle();
   }
 
   ngOnInit() {

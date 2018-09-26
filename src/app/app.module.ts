@@ -28,6 +28,7 @@ import {
   MatSortModule,
   MatTableModule,
   MatToolbarModule,
+  MatRadioModule
 } from '@angular/material';
 import {LayoutModule} from '@angular/cdk/layout';
 import {AppRoutingModule} from './app-routing.module';
@@ -39,6 +40,7 @@ import {DashboardComponent} from './components/body/dashboard/dashboard.componen
 import { LoginComponent } from './components/login/login.component';
 import { ComposeDateComponent } from './components/body/compose-date/compose-date.component';
 import { ValidateSlotComponent } from './components/body/validate-slot/validate-slot.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 
 @NgModule({
@@ -52,7 +54,8 @@ import { ValidateSlotComponent } from './components/body/validate-slot/validate-
     DashboardComponent,
     LoginComponent,
     ComposeDateComponent,
-    ValidateSlotComponent
+    ValidateSlotComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
@@ -83,9 +86,7 @@ import { ValidateSlotComponent } from './components/body/validate-slot/validate-
     NgbModule,
     FlexLayoutModule,
     NgbTimepickerModule,
-
-
-
+    MatRadioModule
 
   ],
   providers: [MessageService],
