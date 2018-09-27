@@ -209,7 +209,7 @@ app.post('/login', (req, res) => {
           jwt.sign({user}, config.secret, {expiresIn: '6000s'}, (err, token) => {
             res.json({
               user: req.body.username,
-              token: token
+              token
             });
           });
         } else {
@@ -224,15 +224,19 @@ app.post('/login', (req, res) => {
 // Test protected route -> get slot overview
 app.get('/bookedslots', verifyToken, (req, res) => {
 
-  Date.find({slots: {$not: {$size: 0}}})
-    .then(result => {
-      res.json(result);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+  jwt.verify(req.token, config.secret, (err) => {
+    if (err) res.sendStatus(403);
+    else {
+      Date.find({slots: {$not: {$size: 0}}})
+        .then(result => {
+          res.json(result);
+        })
+        .catch(err => {
+          res.json(err);
+        });
+    }
+  });
 });
-
 
 function verifyToken(req, res, next) {
   // Get auth header value

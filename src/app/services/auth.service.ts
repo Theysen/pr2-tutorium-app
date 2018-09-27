@@ -1,31 +1,24 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  authToken: any;
-  user: any;
+  authToken: string;
+  user: string;
 
-  constructor(private httpClient: HttpClient) {
+  private uri: string = 'http://localhost:4000/login';
 
+  constructor(private http: HttpClient) {
   }
 
   authenticateUser(user) {
-    return this.httpClient.post('http://localhost:4000/login', user);
+    return this.http.post(this.uri, user);
   }
 
-  getBookedSlots() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'json/application',
-      'Authorization': 'Bearer' + this.authToken
-    });
-    return this.httpClient.get('http://localhost:4000/bookedslots', {headers: headers});
-  }
-
-  storeUserData(username, token) {
+  storeUserData(token, username) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', username);
     this.authToken = token;
@@ -42,6 +35,15 @@ export class AuthService {
   loadToken() {
     const token = localStorage.getItem('id_token');
     this.authToken = token;
+  }
+
+  getBookedSlots() {
+    this.loadToken();
+    const headers = new HttpHeaders({
+      'Content-Type': 'json/application',
+      'Authorization': 'Bearer ' + this.authToken
+    });
+    return this.http.get("http://localhost:4000/bookedslots", {headers: headers});
   }
 
 }

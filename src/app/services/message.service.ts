@@ -7,9 +7,9 @@ import {HttpClient} from "@angular/common/http";
 export class MessageService {
 
   // Production
-  uri: String = ' https://arcane-hamlet-34988.herokuapp.com/messages';
-  // Development Server Adress 
-  // uri: String = 'http://localhost:4000/messages';
+  // uri: String = ' https://arcane-hamlet-34988.herokuapp.com/messages';
+  // Development Server Address
+  uri: String = 'http://localhost:4000/messages';
 
   constructor(private http: HttpClient) {
   }

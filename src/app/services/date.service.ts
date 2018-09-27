@@ -9,9 +9,9 @@ export class DateService {
 
 
   // Production
-  uri: String = 'https://arcane-hamlet-34988.herokuapp.com/dates';
+  // uri: String = 'https://arcane-hamlet-34988.herokuapp.com/dates';
   // Development Server Address
-  // uri: String = 'http://localhost:4000/dates';
+  uri: String = 'http://localhost:4000/dates';
 
   constructor(private http: HttpClient) {
   }
