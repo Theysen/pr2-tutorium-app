@@ -3,13 +3,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 
 // Authorization dependancies
 const jwt = require('jsonwebtoken');
 
 // Config file (env)
 const config = require('./configuration/config');
-
 
 // Mongoose models
 const User = require('./models/User');
@@ -159,13 +159,78 @@ app.get('/slots', (req, res) => {
     });
 });
 
-// Login - Authorization and Token acquisation
-app.post('/login', (req, res) => {
-  jwt.sign({user}, config.secret, {expiresIn: '6000s'}, (err, token) => {
-    res.json({
-      token
-    });
+// Register new user
+app.post('/register', (req, res) => {
+
+  // Hash password from request body
+  let salt = bcrypt.genSaltSync(10);
+  let hash = bcrypt.hashSync(req.body.password, salt);
+
+  // Check if user already exists
+  User.findOne({'username': req.body.username}, (err, user) => {
+    if (err) {
+      res.json(err);
+    } else {
+      if (user) {
+        res.json({message: 'User already exists'});
+      } else {
+        // Create new user in database
+        const newUser = new User({
+          username: req.body.username,
+          password: hash
+        }).save()
+          .then(result => {
+            res.json({
+              message: 'User successfully created',
+              username: req.body.username
+            });
+          })
+          .catch(err => {
+            res.json(err);
+          });
+      }
+    }
   });
+});
+
+// Login - Authorization and Token acquisition
+app.post('/login', (req, res) => {
+
+  // Check if user exists
+  User.findOne({'username': req.body.username}, (err, user) => {
+    if (err) {
+      res.json(err);
+    } else {
+      if (!user) {
+        res.json({message: 'User does not exist'});
+      } else {
+        // Compare passwords and create token if match is found
+        if (bcrypt.compareSync(req.body.password, user.password)) {
+          jwt.sign({user}, config.secret, {expiresIn: '6000s'}, (err, token) => {
+            res.json({
+              user: req.body.username,
+              token: token
+            });
+          });
+        } else {
+          res.json({message: 'Passwords do not match'});
+        }
+      }
+    }
+  })
+});
+
+
+// Test protected route -> get slot overview
+app.get('/bookedslots', verifyToken, (req, res) => {
+
+  Date.find({slots: {$not: {$size: 0}}})
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => {
+      res.json(err);
+    });
 });
 
 
@@ -190,7 +255,6 @@ function verifyToken(req, res, next) {
 
 
 // Start ServerApp
-
 const port = process.env.PORT || config.port;
 
 app.listen(port, () => {
