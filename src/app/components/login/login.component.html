@@ -1,5 +1,24 @@
-<form (ngSubmit)="submitMe()">
-  <input type="text" placeholder="Username">
-  <input type="password" placeholder="Password">
+<form (ngSubmit)="onLoginSubmit()">
+  <input type="text" [(ngModel)]="username" name="username" placeholder="Username"><br>
+  <input type="password" [(ngModel)]="password" name="password" placeholder="Password"><br>
   <button type="submit">Login</button>
+  <br>
 </form>
+<button (click)="logout()">LogOut</button><br>
+
+<div class="slots" *ngIf="slots">
+  <div *ngFor="let appointment of slots">
+    <h3>Datum: {{appointment.date[0]}}.{{appointment.date[1]}}.{{appointment.date[2]}}</h3>
+    <div *ngFor="let slot of appointment.slots">
+      <h5>Uhrzeit: {{slot.startTime[0]}}:{{slot.startTime[1]}}</h5>
+      <p><i>Gruppe:</i> {{slot.bookedByGroup}}</p>
+      <p><i>Raumnummer:</i> {{slot.roomNumber}}</p>
+      <p><i>Nachricht:</i> {{slot.message}}</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+

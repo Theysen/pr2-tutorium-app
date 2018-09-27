@@ -220,6 +220,7 @@ export class CalendarComponent implements OnInit {
       raumnummer = 'H1008';
     }
 
+    console.log(this.selectedDate.Date.day);
 
     this.loading = true;
 

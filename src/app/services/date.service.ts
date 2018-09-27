@@ -9,9 +9,9 @@ export class DateService {
 
 
   // Production
-  // uri: String = 'https://arcane-hamlet-34988.herokuapp.com/dates';
-  // Development Server Adress 
-  uri: String = 'http://localhost:4000/dates';
+  uri: String = 'https://arcane-hamlet-34988.herokuapp.com/dates';
+  // Development Server Address
+  // uri: String = 'http://localhost:4000/dates';
 
   constructor(private http: HttpClient) {
   }
@@ -40,11 +40,6 @@ export class DateService {
       verifyId: verifyId
     };
     return this.http.put(`${this.uri}`, slot);
-  }
-
-  getIndex() {
-    // return this.http.get('https://arcane-hamlet-34988.herokuapp.com/slots'); // PRODUCTION
-    return this.http.get('http//localhost:4000/slots');
   }
 
 }

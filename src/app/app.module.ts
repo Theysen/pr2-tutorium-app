@@ -35,13 +35,14 @@ import {AppRoutingModule} from './app-routing.module';
 import {MessageService} from './services/message.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ComposeMessageComponent} from './components/body/compose-message/compose-message.component';
-import {NgbModule,NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {DashboardComponent} from './components/body/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { ComposeDateComponent } from './components/body/compose-date/compose-date.component';
 import { ValidateSlotComponent } from './components/body/validate-slot/validate-slot.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-
+import {DateService} from "./services/date.service";
+import {AuthService} from "./services/auth.service";
 
 @NgModule({
   declarations: [
@@ -89,7 +90,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MatRadioModule
 
   ],
-  providers: [MessageService],
+  providers: [MessageService, DateService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
