@@ -87,7 +87,7 @@ import {AuthService} from "./services/auth.service";
     NgbModule,
     FlexLayoutModule,
     NgbTimepickerModule,
-    MatRadioModule
+    MatRadioModule,
 
   ],
   providers: [MessageService, DateService, AuthService],

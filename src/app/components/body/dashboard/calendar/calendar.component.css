@@ -53,8 +53,12 @@
 
 .calendar.past {
   color: #cccccc;
+
 }
 
+.calendar.pastTermin {
+  background-color: rgba(156,156,156, 1);
+}
 .datepicker {
   width: 234px;
   height: 267px;

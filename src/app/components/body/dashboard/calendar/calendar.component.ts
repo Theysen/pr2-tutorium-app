@@ -3,6 +3,8 @@ import {NgbCalendar, NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import {DateService} from '../../../../services/date.service';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SlotService} from "../../../../services/slot.service";
+import {Time} from "@angular/common";
+
 
 
 let dateIsValid = false;
@@ -31,10 +33,7 @@ class ServerDate {
     this.startTime = [startTime[0].valueOf(), startTime[1].valueOf()];
     this.endTime = this.increasedTime([startTime[0].valueOf(), startTime[1].valueOf()], (25 * (this.possibleSlots / 2)));
     this.appTime = this.increasedTime([startTime[0].valueOf(), startTime[1].valueOf()], (25 * ((this.bookedSlots - (this.bookedSlots % 2)) / 2)));
-    console.log(this.startTime);
-    console.log(this.bookedSlots);
-    console.log(this.bookedSlots % 2);
-    console.log((25 * ((this.bookedSlots - (this.bookedSlots % 2)) / 2)))
+
 
   }
 
@@ -68,10 +67,9 @@ export class CalendarComponent implements OnInit {
   constructor(private calendar: NgbCalendar, private slotService: SlotService, private dateService: DateService, private fb: FormBuilder) {
 
     this.allDates = [];
-    console.log('dates');
     this.dateService.getDates().subscribe((dates: Response) => {
       const generalDates: any = dates;
-      console.log(generalDates);
+
       for (const data of generalDates) {
         let newData: ServerDate;
         newData = new ServerDate(data.date[2], data.date[1], data.date[0], data.startTime, data.possibleSlots, data.slots.length);
@@ -79,14 +77,14 @@ export class CalendarComponent implements OnInit {
       }
     });
 
-    console.log('dates');
 
   }
 
   onDateSelection(date: NgbDate) {
+
     for (const dat of this.allDates) {
-      if (date.equals(dat.Date) && !this.isFull(date)) {
-        console.log(typeof dat);
+      if (date.equals(dat.Date) && !this.isFull(date) && this.timeLimit(date)) {
+
         this.selectedDate = dat;
         dateIsValid = true;
         this.val();
@@ -94,6 +92,20 @@ export class CalendarComponent implements OnInit {
       }
     }
     return false;
+  }
+  timeLimit(date: NgbDate){
+    var d = new Date();
+
+    var tomorrow =this.calendar.getNext(this.calendar.getToday());
+    this.calendar.getNext(this.calendar.getToday());
+    if(this.calendar.getToday().after(date)||this.calendar.getToday().equals(date)){
+        return false;
+    }else if(date.equals(tomorrow)){
+      if(d.getHours()>=20){
+        return false;
+      }
+    }
+    return true;
   }
 
   isSelected(date: NgbDate) {
@@ -122,7 +134,7 @@ export class CalendarComponent implements OnInit {
   }
 
   log(x) {
-    console.log(x);
+
   }
 
   // checks if day is in the fullDay array
@@ -139,6 +151,13 @@ export class CalendarComponent implements OnInit {
 
   isPast(date: NgbDate): boolean {
     if (date.before(this.calendar.getToday())) {
+      return true;
+    }
+    return false;
+  }
+
+  isPastTermin(date:NgbDate):boolean {
+    if((this.isFree(date)||this.isCompletlyFree(date)||this.isFull(date))&& this.isPast(date)){
       return true;
     }
     return false;
@@ -220,7 +239,6 @@ export class CalendarComponent implements OnInit {
       raumnummer = 'H1008';
     }
 
-    console.log(this.selectedDate.Date.day);
 
     this.loading = true;
 
@@ -230,7 +248,7 @@ export class CalendarComponent implements OnInit {
       try {
         let time: number[];
         this.dateService.bookSlot(this.selectedDate.Date.day, this.selectedDate.Date.month, this.selectedDate.Date.year, this.group.value, this.selectedDate.appTime, this.msg.value, raumnummer, this.slotId).subscribe((messages) => {
-          console.log(messages);
+
         });
       } catch (e) {
         console.log(e);
