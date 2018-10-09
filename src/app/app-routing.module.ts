@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/body/dashboard/dashboard.component';
 import { ValidateSlotComponent } from './components/body/validate-slot/validate-slot.component';
 import { LoginComponent } from './components/body/login/login.component';
-import { AuthGuard } from './guards/auth-guard.service';
+import { AuthGuard } from './guards/auth.guard';
 import { SlotoverviewComponent } from './components/body/dashboard/slotoverview/slotoverview.component';
 
 const routes: Routes = [
@@ -17,7 +17,7 @@ const routes: Routes = [
     component: SlotoverviewComponent,
     canActivate: [AuthGuard]
   },
-  { path: 'idPruefen', component: ValidateSlotComponent },
+  { path: 'checkID', component: ValidateSlotComponent },
   { path: 'login', component: LoginComponent }
 ];
 
