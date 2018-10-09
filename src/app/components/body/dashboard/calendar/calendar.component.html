@@ -24,6 +24,7 @@
                [class.full]="isFull(date)"
                [class.selected]="isSelected(date)"
                [class.past]="isPast(date)"
+               [class.pastTermin]="isPastTermin(date)"
                (mouseenter)="hoveredDate = date"
                (mouseleave)="hoveredDate = null">
             {{ date.day }}
