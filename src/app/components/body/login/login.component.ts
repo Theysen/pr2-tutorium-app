@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../../services/auth.service";
+import { Component, OnInit, NgModule } from '@angular/core';
+import { AuthService } from "../../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -11,19 +11,26 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   slots: any;
+  loggedIn: boolean = false;
 
   constructor(private auth: AuthService) {
   }
 
 
   ngOnInit() {
+    localStorage.clear();
   }
 
   handleSubmit() {
-    this.auth.authenticateUser({username: this.username, password: this.password})
+
+    console.log(this.username);
+    console.log(this.password);
+
+    this.auth.authenticateUser({ username: this.username, password: this.password })
       .subscribe((result: any) => {
         if (result.token) {
           this.auth.storeUserData(result.token, result.user);
+          this.loggedIn = true;
         }
       });
   }
@@ -36,6 +43,7 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+    location.reload();
   }
 
 }

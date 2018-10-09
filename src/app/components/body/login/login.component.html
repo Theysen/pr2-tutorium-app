@@ -1,19 +1,44 @@
-<form (ngSubmit)="handleSubmit()">
-  <input type="text" [(ngModel)]="username" name="username" placeholder="Username"><br>
-  <input type="password" [(ngModel)]="password" name="password" placeholder="Password"><br>
-  <button type="submit">Login</button>
-  <br>
-</form>
-<button (click)="getBookedSlots()">Zeige Slots</button><br>
+<mat-card class="login-card" *ngIf="!loggedIn">
+  <form (ngSubmit)="handleSubmit()">
+    <h2 class="heading">Login</h2>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input type="text" [(ngModel)]="username" name="username" matInput placeholder="Username">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput [(ngModel)]="password" name="password" placeholder="Password">
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="accent" type="submit">Login</button>
+  </form>
+</mat-card>
+<div *ngIf="loggedIn">
+  <button id="getSlots" mat-raised-button color="accent" (click)="getBookedSlots()">Zeige Slots</button>
+</div>
 
 <div class="slots" *ngIf="slots">
   <div *ngFor="let appointment of slots">
-    <h3>Datum: {{appointment.date[0]}}.{{appointment.date[1]}}.{{appointment.date[2]}}</h3>
-    <div *ngFor="let slot of appointment.slots">
-      <h5>Uhrzeit: {{slot.startTime[0]}}:{{slot.startTime[1]}}</h5>
-      <p><i>Gruppe:</i> {{slot.bookedByGroup}}</p>
-      <p><i>Raumnummer:</i> {{slot.roomNumber}}</p>
-      <p><i>Nachricht:</i> {{slot.message}}</p>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h3>Datum: {{appointment.date[0]}}.{{appointment.date[1]}}.{{appointment.date[2]}}</h3>
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+      <div *ngFor="let slot of appointment.slots">
+        <h5>Uhrzeit: {{slot.startTime[0]}}:{{slot.startTime[1]}}</h5>
+        <p><i>Gruppe:</i> {{slot.bookedByGroup}}</p>
+        <p><i>Raumnummer:</i> {{slot.roomNumber}}</p>
+        <p><i>Nachricht:</i> {{slot.message}}</p>
+      </div>
+    </mat-expansion-panel>
   </div>
+</div>
+
+<div *ngIf="loggedIn">
+  <button id="logout" mat-raised-button color="accent" (click)="logout()">Logout</button>
 </div>

@@ -9,9 +9,13 @@
   <span fxFlex="1 1 auto" class="head-component" fxHide.lt-sm="true">
     <div>
       <nav>
+        <button mat-flat-button color="primary" class="buttons" routerLinkActive="active" routerLink="/login">
+          <mat-icon>update</mat-icon>Slots
+        </button>
         <button mat-flat-button color="primary" class="buttons" routerLinkActive="active" routerLink="/idPruefen">
           <mat-icon>done_all</mat-icon>
-          Check ID</button>
+          Check ID
+        </button>
         <!--<button mat-flat-button color="primary" class="buttons" routerLinkActive="active" routerLink="/newDate">-->
         <!--<mat-icon>date_range</mat-icon>-->
         <!--Neues Datum</button>-->
@@ -20,7 +24,8 @@
         <!--Post verfassen</button>-->
         <button mat-flat-button color="primary" class="buttons" routerLinkActive="active" routerLink="/dashboard">
           <mat-icon>dashboard</mat-icon>
-        Dashboard</button>
+          Dashboard
+        </button>
       </nav>
     </div>
   </span>
@@ -28,7 +33,7 @@
   <span fxFlex="1 1 auto" class="head-component" fxHide.gt-xs="true">
     <div>
       <nav>
-                <button mat-flat-button color="primary" class="buttons" routerLinkActive="active">
+        <button mat-flat-button color="primary" class="buttons" routerLinkActive="active">
           <mat-icon (click)="toggle()">home</mat-icon>
         </button>
       </nav>
@@ -36,10 +41,3 @@
   </span>
 
 </mat-toolbar>
-
-
-
-
-
-
-
