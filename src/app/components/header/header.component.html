@@ -9,7 +9,16 @@
   <span fxFlex="1 1 auto" class="head-component" fxHide.lt-sm="true">
     <div>
       <nav>
-        <button mat-flat-button color="primary" class="buttons" routerLinkActive="active" routerLink="/login">
+        <button mat-flat-button color="primary" *ngIf="!authService.loggedIn()" class="buttons" routerLinkActive="active"
+          routerLink="/login">
+          <mat-icon>lock_open</mat-icon>Login
+        </button>
+        <button mat-flat-button color="primary" *ngIf="authService.loggedIn()" (click)="logout()" class="buttons"
+          routerLinkActive="active" routerLink="/dashboard">
+          <mat-icon>logout</mat-icon>Logout
+        </button>
+        <button mat-flat-button color="primary" *ngIf="authService.loggedIn()" class="buttons" routerLinkActive="active"
+          routerLink="/slotoverview">
           <mat-icon>update</mat-icon>Slots
         </button>
         <button mat-flat-button color="primary" class="buttons" routerLinkActive="active" routerLink="/idPruefen">

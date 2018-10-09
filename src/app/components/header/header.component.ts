@@ -1,5 +1,6 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
-import {AppComponent} from "../../app.component";
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { AppComponent } from '../../app.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,16 +8,15 @@ import {AppComponent} from "../../app.component";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-
-
-  constructor(private main:AppComponent) {
-  }
-  toggle(){
+  constructor(private main: AppComponent, private authService: AuthService) {}
+  toggle() {
     this.main.toggle();
   }
 
-  ngOnInit() {
+  logout() {
+    console.log('yo');
+    this.authService.logout();
   }
 
-
+  ngOnInit() {}
 }

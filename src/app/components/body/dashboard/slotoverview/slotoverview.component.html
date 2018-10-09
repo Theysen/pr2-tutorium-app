@@ -1,0 +1,18 @@
+<div class="slots" *ngIf="slots">
+  <div *ngFor="let appointment of slots">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h3>Datum: {{appointment.date[0]}}.{{appointment.date[1]}}.{{appointment.date[2]}}</h3>
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+      <div *ngFor="let slot of appointment.slots">
+        <h5>Uhrzeit: {{slot.startTime[0]}}:{{slot.startTime[1]}}</h5>
+        <p><i>Gruppe:</i> {{slot.bookedByGroup}}</p>
+        <p><i>Raumnummer:</i> {{slot.roomNumber}}</p>
+        <p><i>Nachricht:</i> {{slot.message}}</p>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</div>
