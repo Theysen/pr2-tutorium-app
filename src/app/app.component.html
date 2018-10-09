@@ -1,22 +1,9 @@
 <div id="container">
-
-      <app-header></app-header>        <mat-sidenav-container class="example-container" color="primary">
-  <mat-sidenav #sidenav [mode]="push" [opened]="!toggleNavbar" color="primary" class="all">
-    <app-sidenav></app-sidenav>
-  </mat-sidenav>
-  <mat-sidenav-content>
-      <div id="main" [ngStyle.lt-sm] ="{'padding-left':'0rem','padding-right':'0rem'}">
-
-        <router-outlet></router-outlet>
-      </div>
-
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-
-
+  <app-header></app-header>
+  <div id="main" [ngStyle.lt-sm]="{'padding-left':'0rem','padding-right':'0rem'}">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-
 <footer id="footer">
   <app-footer></app-footer>
 </footer>

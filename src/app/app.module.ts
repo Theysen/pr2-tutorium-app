@@ -42,7 +42,6 @@ import { NgbModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { DashboardComponent } from "./components/body/dashboard/dashboard.component";
 import { ComposeDateComponent } from "./components/body/compose-date/compose-date.component";
 import { ValidateSlotComponent } from "./components/body/validate-slot/validate-slot.component";
-import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { DateService } from "./services/date.service";
 import { AuthService } from "./services/auth.service";
 import { SlotoverviewComponent } from './components/body/dashboard/slotoverview/slotoverview.component';
@@ -58,7 +57,6 @@ import { SlotoverviewComponent } from './components/body/dashboard/slotoverview/
     DashboardComponent,
     ComposeDateComponent,
     ValidateSlotComponent,
-    SidenavComponent,
     LoginComponent,
     SlotoverviewComponent
   ],

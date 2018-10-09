@@ -1,7 +1,6 @@
-import { Component, OnInit, NgModule } from '@angular/core';
-import { AuthService } from '../../../services/auth.service';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,27 +10,21 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
-  slots: any;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {
+  }
 
   ngOnInit() {
-    localStorage.clear();
   }
 
   handleSubmit() {
     this.auth
-      .authenticateUser({ username: this.username, password: this.password })
+      .authenticateUser({username: this.username, password: this.password})
       .subscribe((result: any) => {
         if (result.token) {
           this.auth.storeUserData(result.token, result.user);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard']).catch(err => console.log(err));
         }
       });
-  }
-
-  logout() {
-    this.auth.logout();
-    location.reload();
   }
 }
