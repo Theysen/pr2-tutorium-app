@@ -1,23 +1,19 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class MessageService {
 
-  // Production
-  // uri: String = ' https://arcane-hamlet-34988.herokuapp.com/messages';
-  // Development Server Address
-  uri: String = 'http://localhost:4000/messages';
+  uri: string = environment.baseAPIUrl + '/messages';
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getMessages() {
     return this.http.get(`${this.uri}`);
   }
-
 
   addMessage(author, title, content) {
     const message = {
@@ -29,5 +25,4 @@ export class MessageService {
 
     return this.http.post(`${this.uri}`, message);
   }
-
 }

@@ -10,18 +10,17 @@
     <div>
       <nav>
         <button mat-flat-button color="primary" *ngIf="!loggedIn()" class="buttons" routerLinkActive="active"
-                routerLink="/login">
+          routerLink="/login">
           <mat-icon>lock_open</mat-icon>Login
         </button>
-        <button mat-flat-button color="primary" *ngIf="loggedIn()" (click)="logout()" class="buttons"
-                routerLinkActive="active" routerLink="/dashboard">
+        <button mat-flat-button color="primary" *ngIf="loggedIn()" (click)="logout()" class="buttons" routerLinkActive="active"
+          routerLink="/dashboard">
           <mat-icon>logout</mat-icon>Logout
         </button>
-        <button mat-flat-button color="primary" *ngIf="loggedIn()" class="buttons" routerLinkActive="active"
-                routerLink="/slotoverview">
+        <button mat-flat-button color="primary" *ngIf="loggedIn()" class="buttons" routerLinkActive="active" routerLink="/slotoverview">
           <mat-icon>update</mat-icon>Slots
         </button>
-        <button mat-flat-button color="primary" class="buttons" routerLinkActive="active" routerLink="/idPruefen">
+        <button mat-flat-button color="primary" class="buttons" routerLinkActive="active" routerLink="/checkID">
           <mat-icon>done_all</mat-icon>
           Check ID
         </button>

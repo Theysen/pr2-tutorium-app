@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseAPIUrl: 'https://arcane-hamlet-34988.herokuapp.com'
 };
