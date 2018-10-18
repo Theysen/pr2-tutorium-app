@@ -1,18 +1,47 @@
-<div class="slots" *ngIf="slots">
-  <div *ngFor="let appointment of slots">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <h3>Datum: {{appointment.date[0]}}.{{appointment.date[1]}}.{{appointment.date[2]}}</h3>
-        </mat-panel-title>
 
-      </mat-expansion-panel-header>
-      <div *ngFor="let slot of appointment.slots">
-        <h5>Uhrzeit: {{slot.startTime[0]}}:{{slot.startTime[1]}}</h5>
-        <p><i>Gruppe:</i> {{slot.bookedByGroup}}</p>
-        <p><i>Raumnummer:</i> {{slot.roomNumber}}</p>
-        <p><i>Nachricht:</i> {{slot.message}}</p>
-      </div>
-    </mat-expansion-panel>
+<div *ngIf="slots">
+
+  <div *ngFor="let date of slots">
+
+    <mat-card>
+      <mat-list>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span><mat-icon>date_range</mat-icon></span>
+              <h4>{{date.date[0]}}.{{date.date[1]}}.{{date.date[2]}}</h4>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div *ngIf="date.slots">
+            <button class="delete-date-button" mat-raised-button color="accent">Datum löschen</button>
+            <mat-divider></mat-divider>
+            <div *ngFor="let slot of date.slots">
+
+              <mat-list>
+                <mat-list-item><strong>Slotzeit:{{slot.startTime[0]}}:{{slot.startTime[1]}} |
+                  {{slot.roomNumber}}</strong>
+                </mat-list-item>
+                <mat-list-item>
+                  <h5 matLine>{{slot.bookedByGroup}}</h5>
+                  <p matLine><i>Nachricht:</i></p>
+                  <p matLine>{{slot.message}}</p>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+              </mat-list>
+
+
+            </div>
+
+          </div>
+
+          <mat-divider></mat-divider>
+        </mat-expansion-panel>
+      </mat-list>
+
+    </mat-card>
+
   </div>
+
 </div>

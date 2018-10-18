@@ -10,11 +10,16 @@ import { DateService } from 'src/app/services/date.service';
 export class SlotoverviewComponent implements OnInit {
   slots: any;
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService) {
+  }
 
   ngOnInit() {
     this.auth.getBookedSlots().subscribe(result => {
       this.slots = result;
     });
   }
+}
+
+function sortSlotsByDate() {
+
 }
