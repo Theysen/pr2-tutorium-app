@@ -5,19 +5,22 @@
       PR2 Tutorium
     </button>
   </span>
+  <span *ngIf="loggedIn()"></span>
   <span fxFlex="1 1 auto" fxFill></span>
   <span fxFlex="1 1 auto" class="head-component" fxHide.lt-sm="true">
     <div>
       <nav>
         <button mat-flat-button color="primary" *ngIf="!loggedIn()" class="buttons" routerLinkActive="active"
-          routerLink="/login">
+                routerLink="/login">
           <mat-icon>lock_open</mat-icon>Login
         </button>
-        <button mat-flat-button color="primary" *ngIf="loggedIn()" (click)="logout()" class="buttons" routerLinkActive="active"
-          routerLink="/dashboard">
+        <button mat-flat-button color="primary" *ngIf="loggedIn()" (click)="logout()" class="buttons"
+                routerLinkActive="active"
+                routerLink="/dashboard">
           <mat-icon>logout</mat-icon>Logout
         </button>
-        <button mat-flat-button color="primary" *ngIf="loggedIn()" class="buttons" routerLinkActive="active" routerLink="/slotoverview">
+        <button mat-flat-button color="primary" *ngIf="loggedIn()" class="buttons" routerLinkActive="active"
+                routerLink="/adminview">
           <mat-icon>update</mat-icon>Slots
         </button>
         <button mat-flat-button color="primary" class="buttons" routerLinkActive="active" routerLink="/checkID">
@@ -37,4 +40,35 @@
       </nav>
     </div>
   </span>
+
+  <button class="responsive-menu-button" mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button *ngIf="!loggedIn()" mat-menu-item routerLinkActive="active"
+            routerLink="/login">
+      <mat-icon>keyboard_tab</mat-icon>
+      <span>Login</span>
+    </button>
+    <button *ngIf="loggedIn()" mat-menu-item (click)="logout()" routerLinkActive="active"
+            routerLink="/dashboard">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+    <button *ngIf="loggedIn()" mat-menu-item routerLinkActive="active"
+            routerLink="/slotoverview">
+      <mat-icon>update</mat-icon>
+      <span>Slots</span>
+    </button>
+    <button mat-menu-item routerLinkActive="active" routerLink="/checkID">
+      <mat-icon>done_all</mat-icon>
+      <span>Check ID</span>
+    </button>
+    <button mat-menu-item routerLinkActive="active" routerLink="/dashboard">
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </button>
+  </mat-menu>
+
+
 </mat-toolbar>

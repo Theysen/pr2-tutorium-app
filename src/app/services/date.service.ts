@@ -1,14 +1,13 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class DateService {
-  // Production
-  // uri: String = "https://arcane-hamlet-34988.herokuapp.com/dates";
-  // Development Server Address
-  uri: String = 'http://localhost:4000/dates';
+
+  uri: String = environment.baseAPIUrl + '/dates';
 
   constructor(private http: HttpClient) {
   }

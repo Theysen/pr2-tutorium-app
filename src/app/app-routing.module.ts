@@ -5,24 +5,26 @@ import { ValidateSlotComponent } from './components/body/validate-slot/validate-
 import { LoginComponent } from './components/body/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SlotoverviewComponent } from './components/body/dashboard/slotoverview/slotoverview.component';
+import { AdminViewComponent } from './components/body/dashboard/admin-view/admin-view.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'home', redirectTo: '', pathMatch: 'full' },
-  { path: 'dashboard', redirectTo: '', pathMatch: 'full' },
+  {path: '', component: DashboardComponent},
+  {path: 'home', redirectTo: '', pathMatch: 'full'},
+  {path: 'dashboard', redirectTo: '', pathMatch: 'full'},
   // {path: 'newMessage', component: ComposeMessageComponent},
   // {path: 'newDate', component: ComposeDateComponent},
   {
-    path: 'slotoverview',
-    component: SlotoverviewComponent,
+    path: 'adminview',
+    component: AdminViewComponent,
     canActivate: [AuthGuard]
   },
-  { path: 'checkID', component: ValidateSlotComponent },
-  { path: 'login', component: LoginComponent }
+  {path: 'checkID', component: ValidateSlotComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

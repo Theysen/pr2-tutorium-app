@@ -1,11 +1,49 @@
-
-<div *ngIf="slots">
-
-  <div *ngFor="let date of slots">
-
-    <mat-card>
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <h4>Neuen Termin anlegen</h4>
+  </mat-expansion-panel-header>
+  <mat-form-field appearance="outline">
+    <input type="text" matInput placeholder="Tag">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input type="text" matInput placeholder="Monat">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input type="text" matInput placeholder="Jahr">
+  </mat-form-field>
+  <mat-divider></mat-divider>
+  <mat-form-field appearance="outline">
+    <input type="text" matInput placeholder="Stunde">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input type="text" matInput placeholder="Minute">
+  </mat-form-field>
+  <mat-divider></mat-divider>
+  <mat-form-field appearance="outline">
+    <mat-select placeholder="Raumnummer">
+      <mat-option value="H1004">H1004</mat-option>
+      <mat-option value="H1114">H1114</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-select placeholder="Slotanzahl">
+      <mat-option value="1">1</mat-option>
+      <mat-option value="2">2</mat-option>
+      <mat-option value="3">3</mat-option>
+      <mat-option value="4">4</mat-option>
+      <mat-option value="5">5</mat-option>
+      <mat-option value="6">6</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="accent" style="margin: 1rem">Erstellen</button>
+</mat-expansion-panel>
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <h4>Gebuchte Slots</h4>
+  </mat-expansion-panel-header>
+  <div *ngIf="slots">
+    <div *ngFor="let date of slots">
       <mat-list>
-
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
@@ -13,12 +51,10 @@
               <h4>{{date.date[0]}}.{{date.date[1]}}.{{date.date[2]}}</h4>
             </mat-panel-title>
           </mat-expansion-panel-header>
-
           <div *ngIf="date.slots">
-            <button class="delete-date-button" mat-raised-button color="accent">Datum löschen</button>
+            <button class="delete-date-button" mat-raised-button color="accent">Termin löschen</button>
             <mat-divider></mat-divider>
             <div *ngFor="let slot of date.slots">
-
               <mat-list>
                 <mat-list-item><strong>Slotzeit:{{slot.startTime[0]}}:{{slot.startTime[1]}} |
                   {{slot.roomNumber}}</strong>
@@ -30,18 +66,12 @@
                 </mat-list-item>
                 <mat-divider></mat-divider>
               </mat-list>
-
-
             </div>
-
           </div>
-
           <mat-divider></mat-divider>
         </mat-expansion-panel>
       </mat-list>
-
-    </mat-card>
+    </div>
 
   </div>
-
-</div>
+</mat-expansion-panel>

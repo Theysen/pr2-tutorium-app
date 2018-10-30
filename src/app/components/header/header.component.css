@@ -10,3 +10,15 @@
 .head-component{
   padding-right: 0.5rem;
 }
+
+@media screen and (max-width: 598px){
+  .responsive-menu-button {
+    visibility: visible;
+  }
+}
+
+@media screen and (min-width: 599px){
+  .responsive-menu-button {
+    visibility: hidden;
+  }
+}

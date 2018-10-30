@@ -1,0 +1,40 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-icon>add_circle</mat-icon>
+    <h5>Termin erstellen</h5>
+  </mat-expansion-panel-header>
+  <mat-form-field appearance="outline">
+    <input [(ngModel)]="day" type="text" matInput placeholder="Tag">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input [(ngModel)]="month" type="text" matInput placeholder="Monat">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input [(ngModel)]="year" type="text" matInput placeholder="Jahr">
+  </mat-form-field>
+  <mat-divider></mat-divider>
+  <mat-form-field appearance="outline">
+    <input [(ngModel)]="startTime[0]" type="text" matInput placeholder="Stunde">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input [(ngModel)]="startTime[1]" type="text" matInput placeholder="Minute">
+  </mat-form-field>
+  <mat-divider></mat-divider>
+  <mat-form-field appearance="outline">
+    <mat-select [(ngModel)]="roomNumber" placeholder="Raumnummer">
+      <mat-option value="H1004">H1004</mat-option>
+      <mat-option value="H1114">H1114</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-select [(ngModel)]="amountOfSlots" placeholder="Slotanzahl">
+      <mat-option value="1">1</mat-option>
+      <mat-option value="2">2</mat-option>
+      <mat-option value="3">3</mat-option>
+      <mat-option value="4">4</mat-option>
+      <mat-option value="5">5</mat-option>
+      <mat-option value="6">6</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button (click)="printValues()" mat-raised-button color="accent" style="margin: 1rem">Erstellen</button>
+</mat-expansion-panel>
