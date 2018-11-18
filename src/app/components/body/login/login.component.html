@@ -1,18 +1,18 @@
-<mat-card class="login-card">
+<mat-card class="mat-elevation-z6">
   <form (ngSubmit)="handleSubmit()">
-    <h2 class="heading">Login</h2>
-    <p>
-      <mat-form-field appearance="outline">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content fxLayout="column">
+      <mat-form-field appearance="outline" fxFlex="1 1 100%">
         <mat-label>Username</mat-label>
         <input type="text" [(ngModel)]="username" name="username" matInput placeholder="Username">
       </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" fxFlex="1 1 100%">
         <mat-label>Password</mat-label>
         <input type="password" matInput [(ngModel)]="password" name="password" placeholder="Password">
       </mat-form-field>
-    </p>
-    <button style="text-transform: uppercase" mat-raised-button color="accent" type="submit">Login</button>
+    </mat-card-content>
+    <mat-card-actions>
+      <button style="text-transform: uppercase" mat-raised-button color="accent" type="submit">Login</button>
+    </mat-card-actions>
   </form>
 </mat-card>

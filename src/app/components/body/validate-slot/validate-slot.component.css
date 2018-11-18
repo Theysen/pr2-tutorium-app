@@ -1,27 +1,9 @@
 .messages {
   magin: 1rem;
 }
-.mat-elevation-z6{
-  margin: 1rem;
-}
-
-.drunter{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 1rem;
+.mat-card-actions {
+  margin-left: 0rem;
+  margin-right: 0rem;
 
 }
-.drunter2{
-
-  display: flex;
-  flex-direction: row-reverse;
-  padding: 2rem;
-
-}
-
-.error {
-  color: red;
-}
-
 

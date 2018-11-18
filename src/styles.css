@@ -7,3 +7,25 @@
 html,body {
   height: 100%;
 }
+
+.error {
+  color: red;
+}
+
+.mat-elevation-z12{
+  height: 70px;
+  position: fixed;
+  z-index: 100;
+}
+
+.mat-elevation-z6{
+  margin: 1rem;
+}
+
+.buttons{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.mat-card-actions {
+  margin: 0rem;
+}

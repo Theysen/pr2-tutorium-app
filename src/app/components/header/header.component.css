@@ -1,12 +1,4 @@
-.mat-elevation-z12{
-  height: 70px;
-  position: fixed;
-  z-index: 100;
-}
-.buttons{
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
+
 .head-component{
   padding-right: 0.5rem;
 }

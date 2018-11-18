@@ -1,7 +1,10 @@
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header fxLayout="row">
+    <mat-panel-title fxFlex="1 1 100%">
+      Termin erstellen
+    </mat-panel-title>
     <mat-icon>add_circle</mat-icon>
-    <h5>Termin erstellen</h5>
+
   </mat-expansion-panel-header>
   <mat-form-field appearance="outline">
     <input [(ngModel)]="day" type="text" matInput placeholder="Tag">
